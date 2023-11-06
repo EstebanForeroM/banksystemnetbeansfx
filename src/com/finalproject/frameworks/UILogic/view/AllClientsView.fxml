@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.AllClientsViewController">
+    <children>
+        <VBox layoutX="0" layoutY="0" spacing="10" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <SplitMenuButton mnemonicParsing="false" text="Back">
+                    <items>
+                        <MenuItem fx:id="clientsManagement" mnemonicParsing="false" text="Clients Management" />
+                        <MenuItem fx:id="productsManagement" mnemonicParsing="false" text="Products Management" />
+                        <MenuItem fx:id="transfers" mnemonicParsing="false" text="Transfers" />
+                    </items>
+                </SplitMenuButton>
+                <TextField fx:id="searchField" promptText="Search by name" />
+                <SplitMenuButton mnemonicParsing="false" text="Gender">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Male" />
+                        <MenuItem mnemonicParsing="false" text="Female" />
+                    </items>
+                </SplitMenuButton>
+                <SplitMenuButton mnemonicParsing="false" text="Products">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Savings Account" />
+                        <MenuItem mnemonicParsing="false" text="Current Account" />
+                        <MenuItem mnemonicParsing="false" text="Visa Card" />
+                        <MenuItem mnemonicParsing="false" text="American Card" />
+                        <MenuItem mnemonicParsing="false" text="CDT" />
+                    </items>
+                </SplitMenuButton>
+            </children>
+        </VBox>
+        <ScrollPane layoutX="205" layoutY="0" prefHeight="450" prefWidth="492" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <TableView fx:id="clientsTable">
+                    <columns>
+                        <TableColumn fx:id="columnID" prefWidth="120.0" text="ID" />
+                        <TableColumn fx:id="columnName" prefWidth="173.0" text="Name" />
+                        <TableColumn fx:id="columnGender" prefWidth="120.0" text="Gender" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
