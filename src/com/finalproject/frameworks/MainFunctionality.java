@@ -21,8 +21,7 @@ public class MainFunctionality extends Application {
         ClientRepository clientRepository = new TextFileClientRepository("src\\data\\users\\users.txt");
         ProductRepository productRepository = new TextFileProductRepository("src\\data\\products");
         appController = new AppController(clientRepository, productRepository);
-        
-        //here we start the app
+        launch(args);
     }
 
     @Override
