@@ -6,10 +6,12 @@ import com.finalproject.controllers.ProductRepository;
 import com.finalproject.frameworks.repositoryLogic.TextFileClientRepository;
 import com.finalproject.frameworks.repositoryLogic.TextFileProductRepository;
 import java.io.IOException;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainFunctionality extends Application {
@@ -27,6 +29,15 @@ public class MainFunctionality extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("initialWindow"), 640, 480);
+        
+        URL imageUrl = MainFunctionality.class.getResource("/img/logo.png");
+        if (imageUrl == null) {
+            throw new IllegalArgumentException("Image not found!");
+        }
+
+        Image icon = new Image(imageUrl.toExternalForm());
+        stage.getIcons().add(icon);
+        
         stage.setTitle("Bank system");
         stage.setScene(scene);
         stage.show();
