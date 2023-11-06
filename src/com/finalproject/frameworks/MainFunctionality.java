@@ -36,7 +36,9 @@ public class MainFunctionality extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainFunctionality.class.getResource(fxml + ".fxml"));
+        // Adjust the path according to where your FXML files are located within your project structure.
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFunctionality.class.getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
 }
