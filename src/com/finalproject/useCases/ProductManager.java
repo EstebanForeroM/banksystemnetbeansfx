@@ -1,8 +1,8 @@
 package com.finalproject.useCases;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.finalproject.entities.Product;
 import com.finalproject.entities.Products.ProductsTypes;
@@ -10,10 +10,10 @@ import com.finalproject.entities.Products.ProductsTypes;
 public class ProductManager {
     private List<Product> products;
 
-    private Set<Integer> productIds;
+    private HashSet<Integer> productIds;
 
     public ProductManager(List<Product> products) {
-        productIds = Set.of();
+        productIds = new HashSet<>();
         this.products = products;
         for (Product product : products) {
             if (productIds.contains(product.getProductId()))
