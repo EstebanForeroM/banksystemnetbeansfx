@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.ClientWindowController">
+   <children>
+      <CheckBox layoutX="293.0" layoutY="279.0" mnemonicParsing="false" text="Savings Account" />
+      <CheckBox layoutX="293.0" layoutY="315.0" mnemonicParsing="false" text="Current Account" />
+      <CheckBox layoutX="294.0" layoutY="348.0" mnemonicParsing="false" text="CDT" />
+      <CheckBox layoutX="429.0" layoutY="279.0" mnemonicParsing="false" text="Visa Card" />
+      <CheckBox layoutX="429.0" layoutY="315.0" mnemonicParsing="false" text="American Card" />
+      <VBox layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="213.0">
+         <children>
+            <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" textAlignment="CENTER">
+              <items>
+                <MenuItem mnemonicParsing="false" text="ClientsMangement" />
+                <MenuItem mnemonicParsing="false" text="ProductsManagement" />
+                <MenuItem mnemonicParsing="false" text="Tranferents" />
+              </items>
+            </SplitMenuButton>
+            <MenuBar layoutX="19.0" layoutY="293.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Search Pictures">
+                  <MenuItem mnemonicParsing="false" text="Close" />
+                </Menu>
+                <Menu mnemonicParsing="false" text="Clean">
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+                </Menu>
+                <Menu mnemonicParsing="false" text="Save/Modify">
+                  <MenuItem mnemonicParsing="false" text="About" />
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Button layoutX="19.0" layoutY="329.0" mnemonicParsing="false" text="See All" />
+         </children>
+      </VBox>
+      <TextField layoutX="281.0" layoutY="33.0" prefHeight="25.0" prefWidth="291.0" />
+      <TextField layoutX="282.0" layoutY="82.0" prefHeight="25.0" prefWidth="291.0" />
+      <TextField layoutX="282.0" layoutY="139.0" prefHeight="25.0" prefWidth="291.0" />
+      <MenuButton layoutX="281.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Gender">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Male" />
+          <MenuItem mnemonicParsing="false" text="Female" />
+        </items>
+      </MenuButton>
+      <Button layoutX="263.0" layoutY="396.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="321.0" text="Save Changes" />
+      <Text layoutX="305.0" layoutY="27.0" scaleX="2.0" scaleY="1.25" text="Client ID" />
+      <Text layoutX="298.0" layoutY="77.0" scaleX="2.0" scaleY="1.25" text="Name" />
+      <Text layoutX="301.0" layoutY="191.0" scaleX="2.0" scaleY="1.25" text="Gender" />
+      <Text layoutX="400.0" layoutY="259.0" scaleX="2.0" scaleY="1.25" text="Products" />
+      <Text layoutX="293.0" layoutY="133.0" scaleX="2.0" scaleY="1.25" text="Clue" />
+   </children>
+</AnchorPane>

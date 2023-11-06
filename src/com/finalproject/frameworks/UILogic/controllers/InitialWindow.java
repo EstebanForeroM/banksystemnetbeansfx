@@ -1,5 +1,7 @@
 package com.finalproject.frameworks.UILogic.controllers;
 
+import com.finalproject.frameworks.MainFunctionality;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -30,9 +32,8 @@ public class InitialWindow implements Initializable {
     }    
 
     @FXML
-    private void handleClientManagementButtonClick(ActionEvent event) {
-        // Handler for Clients Management button click
-        // TODO: Implement your logic here
+    private void handleClientManagementButtonClick(ActionEvent event) throws IOException {
+        MainFunctionality.setRoot("ClientWindow");
     }
     
     // Additional methods for handling other button clicks can be added below
