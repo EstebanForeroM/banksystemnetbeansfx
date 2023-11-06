@@ -27,6 +27,7 @@ public class MainFunctionality extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("initialWindow"), 640, 480);
+        stage.setTitle("Bank system");
         stage.setScene(scene);
         stage.show();
     }
