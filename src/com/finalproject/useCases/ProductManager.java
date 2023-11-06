@@ -13,6 +13,7 @@ public class ProductManager {
     private Set<Integer> productIds;
 
     public ProductManager(List<Product> products) {
+        productIds = Set.of();
         this.products = products;
         for (Product product : products) {
             if (productIds.contains(product.getProductId()))
