@@ -38,6 +38,7 @@ public class MainFunctionality extends Application {
         Image icon = new Image(imageUrl.toExternalForm());
         stage.getIcons().add(icon);
         
+        stage.setResizable(false);
         stage.setTitle("Bank system");
         stage.setScene(scene);
         stage.show();
