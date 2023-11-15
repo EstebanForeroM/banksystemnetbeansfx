@@ -7,15 +7,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- */
 public class InitialWindow implements Initializable {
 
     @FXML
-    private Button ClientsManagement; // Button for Clients Management
+    public Button ClientsManagement; // Button for Clients Management
 
     @FXML
     private Button ProductsManagement; // Button for Products Management
@@ -23,17 +23,56 @@ public class InitialWindow implements Initializable {
     @FXML
     private Button Transferences; // Button for Transferences
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Initialization code here
     }    
 
     @FXML
-    private void handleClientManagementButtonClick(ActionEvent event) throws IOException {
-        MainFunctionality.setRoot("ClientWindow");
+    public void eventClientManagementButtonClick() {
+        String fxml = "ClientWindow";
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage currentStage = (Stage) this.ClientsManagement.getScene().getWindow();
+
+            currentStage.setScene(scene);
+            currentStage.show();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    @FXML 
+    public void eventProductsManagementButtonClick() throws IOException{
+        String fxml = "ProductWindow";
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage currentStage = (Stage) this.ProductsManagement.getScene().getWindow();
+
+            currentStage.setScene(scene);
+            currentStage.show();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void eventTransferencesButtonClick() throws IOException {
+        String fxml = "initialWindow";
+        MainFunctionality.setRoot(fxml);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.show();
     }
     
     // Additional methods for handling other button clicks can be added below

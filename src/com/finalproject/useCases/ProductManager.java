@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.finalproject.entities.Product;
-import com.finalproject.entities.Products.ProductsTypes;
+import com.finalproject.entities.products.ProductType;
 
 public class ProductManager {
     private List<Product> products;
@@ -18,7 +18,7 @@ public class ProductManager {
         for (Product product : products) {
             if (productIds.contains(product.getProductId()))
                 throw new IllegalArgumentException("Product already exists in the system.");
-            productIds.add(product.getProductId());
+            productIds.add((Integer) product.getProductId());
         }
     }
 
@@ -78,7 +78,7 @@ public class ProductManager {
         return clientProducts;
     }
 
-    public List<Product> getProductsByType(ProductsTypes type) {
+    public List<Product> getProductsByType(ProductType type) {
         List<Product> clientProducts = new ArrayList<Product>();
         for (Product product : products) {
             if (product.getProductName().equals(type.getType())) {

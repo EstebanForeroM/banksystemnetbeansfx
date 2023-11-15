@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.ClientWindowController">
-   <children>
-      <CheckBox layoutX="293.0" layoutY="279.0" mnemonicParsing="false" text="Savings Account" />
-      <CheckBox layoutX="293.0" layoutY="315.0" mnemonicParsing="false" text="Current Account" />
-      <CheckBox layoutX="294.0" layoutY="348.0" mnemonicParsing="false" text="CDT" />
-      <CheckBox layoutX="429.0" layoutY="279.0" mnemonicParsing="false" text="Visa Card" />
-      <CheckBox layoutX="429.0" layoutY="315.0" mnemonicParsing="false" text="American Card" />
-      <VBox layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="213.0">
-         <children>
-            <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" textAlignment="CENTER">
-              <items>
-                <MenuItem mnemonicParsing="false" text="ClientsMangement" />
-                <MenuItem mnemonicParsing="false" text="ProductsManagement" />
-                <MenuItem mnemonicParsing="false" text="Tranferents" />
-              </items>
-            </SplitMenuButton>
-            <MenuBar layoutX="19.0" layoutY="293.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="Search Pictures">
-                  <MenuItem mnemonicParsing="false" text="Close" />
-                </Menu>
-                <Menu mnemonicParsing="false" text="Clean">
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                </Menu>
-                <Menu mnemonicParsing="false" text="Save/Modify">
-                  <MenuItem mnemonicParsing="false" text="About" />
-                </Menu>
-              </menus>
-            </MenuBar>
-            <Button layoutX="19.0" layoutY="329.0" mnemonicParsing="false" text="See All" />
-         </children>
-      </VBox>
-      <TextField layoutX="281.0" layoutY="33.0" prefHeight="25.0" prefWidth="291.0" />
-      <TextField layoutX="282.0" layoutY="82.0" prefHeight="25.0" prefWidth="291.0" />
-      <TextField layoutX="282.0" layoutY="139.0" prefHeight="25.0" prefWidth="291.0" />
-      <MenuButton layoutX="281.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Gender">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Male" />
-          <MenuItem mnemonicParsing="false" text="Female" />
-        </items>
-      </MenuButton>
-      <Button layoutX="263.0" layoutY="396.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="321.0" text="Save Changes" />
-      <Text layoutX="305.0" layoutY="27.0" scaleX="2.0" scaleY="1.25" text="Client ID" />
-      <Text layoutX="298.0" layoutY="77.0" scaleX="2.0" scaleY="1.25" text="Name" />
-      <Text layoutX="301.0" layoutY="191.0" scaleX="2.0" scaleY="1.25" text="Gender" />
-      <Text layoutX="400.0" layoutY="259.0" scaleX="2.0" scaleY="1.25" text="Products" />
-      <Text layoutX="293.0" layoutY="133.0" scaleX="2.0" scaleY="1.25" text="Clue" />
-   </children>
+<children>
+        <CheckBox fx:id="SavingsAccount" layoutX="277.0" layoutY="281.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="121.0" text="Savings Account" />
+        <CheckBox fx:id="CurrentAccount" layoutX="277.0" layoutY="317.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="121.0" text="Current Account" />
+        <CheckBox fx:id="CDT" layoutX="278.0" layoutY="350.0" mnemonicParsing="false" text="CDT" />
+        <CheckBox fx:id="VisaCard" layoutX="413.0" layoutY="281.0" mnemonicParsing="false" text="Visa Card" />
+        <CheckBox fx:id="AmericanCard" layoutX="413.0" layoutY="317.0" mnemonicParsing="false" text="American Card" />
+        <VBox prefHeight="457.0" prefWidth="213.0">
+           <children>
+              <AnchorPane fx:id="LeftPanel" prefHeight="462.0" prefWidth="213.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
+                 <children>
+                    <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
+                      <items>
+                        <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" text="ClientsMangement" />
+                        <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
+                        <MenuItem fx:id="Tranferents" mnemonicParsing="false" text="Tranferents" />
+                      </items>
+                    </SplitMenuButton>
+                    <Button fx:id="Clean" layoutX="19.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleCleanButtonClicked" prefHeight="33.0" prefWidth="176.0" text="Clean" />
+                  <Button fx:id="SeeAll" layoutX="19.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleSeeAllButtonClicked" prefHeight="33.0" prefWidth="176.0" text="See All" />
+                  <Button fx:id="SaveOrModify" layoutX="19.0" layoutY="286.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="176.0" text="Save/Modify" />
+                  <Button fx:id="SearchPicture" layoutX="19.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleSearchPictureButtonClicked" prefHeight="33.0" prefWidth="176.0" text="Search Picture" />
+                  <ImageView fx:id="userImageView" fitHeight="187.0" fitWidth="200.0" layoutX="7.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+                 </children>
+              </AnchorPane>
+           </children>
+        </VBox>
+        <TextField fx:id="clientIDTextField" layoutX="265.0" layoutY="35.0" prefHeight="25.0" prefWidth="291.0" />
+        <TextField fx:id="nameTextField" layoutX="266.0" layoutY="84.0" prefHeight="25.0" prefWidth="291.0" />
+        <TextField fx:id="clueTextField" layoutX="266.0" layoutY="141.0" prefHeight="25.0" prefWidth="291.0" />
+        <MenuButton fx:id="genderMenuButton" layoutX="265.0" layoutY="199.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Selected" textAlignment="CENTER">
+          <items>
+            <MenuItem fx:id="Male" mnemonicParsing="false" text="Male" />
+            <MenuItem fx:id="Female" mnemonicParsing="false" text="Female" />
+            <MenuItem fx:id="Other" mnemonicParsing="false" text="Other" />
+          </items>
+        </MenuButton>
+        <Button fx:id="SaveShanges" layoutX="247.0" layoutY="398.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="321.0" styleClass="SaveShanges" stylesheets="@initialwindow.css" text="Save Shanges" />
+        <Text layoutX="289.0" layoutY="29.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Client ID" />
+        <Text layoutX="282.0" layoutY="79.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+        <Text layoutX="285.0" layoutY="193.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+        <Text layoutX="384.0" layoutY="261.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" wrappingWidth="56.5869140625" />
+        <Text layoutX="277.0" layoutY="135.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Clue" />
+    </children>
 </AnchorPane>

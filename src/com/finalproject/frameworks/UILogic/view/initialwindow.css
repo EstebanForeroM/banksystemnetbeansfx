@@ -1,7 +1,31 @@
-/*
- * Empty Stylesheet file.
- */
+/*InterfaceClient*/
 
-.mainFxmlClass {
+.LeftPanel {
+    -fx-background-color: linear-gradient(to bottom, #272b3f, #256b51);
+    -fx-border-radius: 25px;
+    -fx-border-color: #808080;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-background-radius: 25px;
+    -fx-border-style: solid;
+        
+}
 
+.custom-button {
+    -fx-text-fill: white;
+    -fx-background-color: transparent; /* Hacer el fondo transparente */
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.PrincipalPanel{
+    -fx-border-radius: 40px;
+}
+
+.SaveShanges{
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom,   #272b3f, #256b51); 
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+    -fx-transition: transform 0.3s, box-shadow 0.3s;
 }

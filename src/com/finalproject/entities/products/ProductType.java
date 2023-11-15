@@ -26,4 +26,8 @@ public enum ProductType {
         }
         return ProductType.UninitializedProduct;
     }
+
+    public Object getType() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

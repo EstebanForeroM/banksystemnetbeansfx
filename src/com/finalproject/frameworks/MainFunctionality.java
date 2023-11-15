@@ -19,7 +19,7 @@ public class MainFunctionality extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("initialWindow"), 640, 480);
+        scene = new Scene(loadFXML("initialWindow"), 635, 455);
         
         URL imageUrl = MainFunctionality.class.getResource("/img/logo.png");
         if (imageUrl == null) {
@@ -44,5 +44,4 @@ public class MainFunctionality extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainFunctionality.class.getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
 }
