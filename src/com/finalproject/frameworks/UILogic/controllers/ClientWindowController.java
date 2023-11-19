@@ -88,7 +88,6 @@ public class ClientWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-    // Initialization code here, if any
 
     private void saveClient() {
 
@@ -143,7 +142,7 @@ public class ClientWindowController implements Initializable {
 
     @FXML
     public void handleSaveChangesButtonClicked(ActionEvent event) {
-
+        saveClient();
     }
 
     private void addSelectedProducts(Client client) {

@@ -19,11 +19,11 @@
                <children>
                   <AnchorPane fx:id="LeftPanel" prefHeight="450.0" prefWidth="197.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
                      <children>
-                         <SplitMenuButton fx:id="Navigation" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
+                         <SplitMenuButton fx:id="Navigation" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
                           <items>
-                            <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" text="ClientsMangement" />
-                            <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
-                            <MenuItem fx:id="Tranferents" mnemonicParsing="false" text="Tranferents" />
+                            <MenuItem fx:id="InitialWindow" mnemonicParsing="false" onAction="#eventInitialWindowSplitMenuButtonClick" text="InitialWindow" />
+                            <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" onAction="#handleBack" text="ProductsManagement" />
+                            <MenuItem fx:id="Tranferents" mnemonicParsing="false" onAction="#handleBack" text="Tranferents" />
                           </items>
                         </SplitMenuButton>
                         <ImageView fx:id="ImagenUser" fitHeight="209.0" fitWidth="162.0" layoutX="17.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
@@ -37,24 +37,25 @@
                      <content>
                         <TableView fx:id="TableClient" prefHeight="238.0" prefWidth="541.0" stylesheets="@initialwindow.css">
                           <columns>
-                            <TableColumn fx:id="ColumID" prefWidth="147.0" text="ID" />
-                            <TableColumn fx:id="ColumName" prefWidth="238.0" text="Name" />
-                              <TableColumn fx:id="ColumGender" prefWidth="116.0" text="Gender" />
+                            <TableColumn fx:id="ColumID" onEditStart="#initialize" prefWidth="147.0" text="ID" />
+                            <TableColumn fx:id="ColumName" onEditStart="#initialize" prefWidth="238.0" text="Name" />
+                              <TableColumn fx:id="ColumGender" onEditStart="#initialize" prefWidth="116.0" text="Gender" />
                           </columns>
                         </TableView>
                      </content>
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <TextField fx:id="SearchForName" layoutX="226.0" layoutY="286.0" prefHeight="25.0" prefWidth="173.0" />
+            <TextField fx:id="SearchForName" layoutX="226.0" layoutY="286.0" onAction="#handleSearchForName" prefHeight="25.0" prefWidth="173.0" />
             <Text layoutX="226.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for name" />
-            <SplitMenuButton fx:id="SearchForGender" layoutX="226.0" layoutY="336.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Gender">
+            <SplitMenuButton fx:id="SearchForGender" layoutX="226.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSearchForGender" prefHeight="33.0" prefWidth="151.0" text="Gender">
               <items>
                 <MenuItem mnemonicParsing="false" text="Male" />
                 <MenuItem mnemonicParsing="false" text="Famale" />
+                  <MenuItem mnemonicParsing="false" text="Other" />
               </items>
             </SplitMenuButton>
-            <SplitMenuButton fx:id="SearchForProducts" layoutX="450.0" layoutY="282.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Products">
+            <SplitMenuButton fx:id="SearchForProducts" layoutX="450.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleProductsButtonClick" prefHeight="33.0" prefWidth="151.0" text="Products">
                <items>
                   <MenuItem mnemonicParsing="false" text="Savings Account" />
                   <MenuItem mnemonicParsing="false" text="Current Account" />

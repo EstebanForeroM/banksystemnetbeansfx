@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,62 +32,23 @@ public class InitialWindow implements Initializable {
     }    
 
     @FXML
-    public void eventClientManagementButtonClick() {
+    public void eventClientManagementButtonClick(ActionEvent event) throws IOException {
         String fxml = "ClientWindow";
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage currentStage = (Stage) this.ClientsManagement.getScene().getWindow();
-
-            currentStage.setScene(scene);
-            currentStage.show();
-
-            Navigation.getInstance().fireEvent(currentStage, EventType.ROOT, new Navigation.SceneChangeEvent(scene));
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
     
     @FXML 
-    public void eventProductsManagementButtonClick() throws IOException{
+    public void eventProductsManagementButtonClick(ActionEvent event) throws IOException{
         String fxml = "ProductWindow";
-         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage currentStage = (Stage) this.ProductsManagement.getScene().getWindow();
-
-            currentStage.setScene(scene);
-            currentStage.show();
-
-            Navigation.getInstance().fireEvent(currentStage, EventType.ROOT, new Navigation.SceneChangeEvent(scene));
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
     
     @FXML
-    public void eventTransferencesButtonClick() throws IOException {
+    public void eventTransferencesButtonClick(ActionEvent event) throws IOException {
         String fxml = "PasswordWindow";
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            Stage currentStage = (Stage) this.Transferences.getScene().getWindow();
-
-            currentStage.setScene(scene);
-            currentStage.show();
-
-            Navigation.getInstance().fireEvent(currentStage, EventType.ROOT, new Navigation.SceneChangeEvent(scene));
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
 }

@@ -13,35 +13,27 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.ProductWindowController">
    <children>
-        <VBox layoutX="-8.0" layoutY="-173.0" prefHeight="457.0" prefWidth="213.0" />
+        <VBox layoutX="-8.0" layoutY="-2.0" prefHeight="450.0" prefWidth="220.0" />
         <AnchorPane fx:id="LeftPanel" layoutX="-3.0" prefHeight="450.0" prefWidth="213.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
            <children>
-              <SplitMenuButton fx:id="Navigation" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" stylesheets="@initialwindow" text="Back" textAlignment="CENTER">
+              <SplitMenuButton fx:id="Navigation" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
                  <items>
                     <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" text="ClientsMangement" />
                     <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
                     <MenuItem fx:id="Tranferents" mnemonicParsing="false" text="Tranferents" />
                  </items>
               </SplitMenuButton>
-              <TextField fx:id="SearchForID" layoutX="20.0" layoutY="122.0" />
+              <TextField fx:id="SearcheForID" layoutX="20.0" layoutY="122.0" />
               <Text layoutX="20.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
               <Button fx:id="SeeAll" layoutX="19.0" layoutY="259.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="176.0" text="See All" />
-              <SplitMenuButton fx:id="AllProducts" layoutX="19.0" layoutY="177.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Products">
-                 <items>
-                    <MenuItem mnemonicParsing="false" text="Savings Account" />
-                    <MenuItem mnemonicParsing="false" text="Current Account" />
-                    <MenuItem mnemonicParsing="false" text="Visa card" />
-                    <MenuItem mnemonicParsing="false" text="American Card" />
-                    <MenuItem mnemonicParsing="false" text="CDT" />
-                 </items>
-              </SplitMenuButton>
+              <SplitMenuButton fx:id="ProductsOfClient" layoutX="19.0" layoutY="177.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Products" />
            </children>
         </AnchorPane>
         <Label layoutX="262.0" layoutY="47.0" prefHeight="17.0" prefWidth="79.0" scaleX="2.0" scaleY="1.25" text="Opening Date" />
         <DatePicker fx:id="Date" layoutX="223.0" layoutY="66.0" prefHeight="25.0" prefWidth="260.0" />
         <Label layoutX="263.0" layoutY="114.0" prefHeight="17.0" prefWidth="79.0" scaleX="2.0" scaleY="1.25" text="Num. Product" />
         <TextField fx:id="NumProduct" layoutX="226.0" layoutY="133.0" prefHeight="21.0" prefWidth="311.0" />
-        <TextArea layoutX="226.0" layoutY="178.0" prefHeight="38.0" prefWidth="169.0" />
+        <TextArea fx:id="Saldo" layoutX="226.0" layoutY="178.0" prefHeight="38.0" prefWidth="169.0" />
         <TextField layoutX="226.0" layoutY="223.0" prefHeight="21.0" prefWidth="311.0" />
         <TextArea layoutX="226.0" layoutY="269.0" prefHeight="38.0" prefWidth="169.0" />
         <TextField layoutX="226.0" layoutY="314.0" prefHeight="21.0" prefWidth="311.0" />
