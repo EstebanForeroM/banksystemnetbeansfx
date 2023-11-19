@@ -11,24 +11,24 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.AllProductsViewController">
       <children>
-      <AnchorPane fx:id="LeftPanel" prefHeight="92.0" prefWidth="630.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
+      <AnchorPane fx:id="LeftPanel" prefHeight="106.0" prefWidth="630.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
          <children>
-            <SplitMenuButton layoutX="25.0" layoutY="2.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
+            <SplitMenuButton fx:id="Navigation" layoutX="28.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
                <items>
                   <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" onAction="#handleClientManagementButtonClick" text="ClientsMangement" />
                   <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
                   <MenuItem fx:id="Tranferents" mnemonicParsing="false" text="Tranferents" />
                </items>
             </SplitMenuButton>
-            <SplitMenuButton layoutX="194.0" layoutY="39.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="Products">
+            <SplitMenuButton fx:id="SearchProductByproduct" layoutX="197.0" layoutY="52.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="Products">
                <items>
                   <MenuItem mnemonicParsing="false" text="Male" />
                   <MenuItem mnemonicParsing="false" text="Female" />
                </items>
             </SplitMenuButton>
-            <TextField layoutX="481.0" layoutY="43.0" prefHeight="25.0" prefWidth="102.0" />
-            <Text layoutX="371.0" layoutY="60.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Search ID" wrappingWidth="65.0" />
-            <SplitMenuButton layoutX="40.0" layoutY="39.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="ID Client">
+            <TextField fx:id="SearchForID" layoutX="450.0" layoutY="56.0" prefHeight="25.0" prefWidth="127.0" />
+            <Text layoutX="375.0" layoutY="73.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Search ID" wrappingWidth="65.0" />
+            <SplitMenuButton fx:id="SearchProductByIDclient" layoutX="46.0" layoutY="52.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="ID Client">
                <items>
                   <MenuItem mnemonicParsing="false" text="Savings Account" />
                   <MenuItem mnemonicParsing="false" text="Current Account" />
@@ -39,15 +39,15 @@
             </SplitMenuButton>
          </children>
       </AnchorPane>
-      <ScrollPane layoutX="14.0" layoutY="100.0" prefHeight="300.0" prefWidth="582.0">
+      <ScrollPane layoutX="14.0" layoutY="114.0" prefHeight="286.0" prefWidth="610.0">
          <content>
-            <TableView prefHeight="328.0" prefWidth="611.0">
+            <TableView prefHeight="333.0" prefWidth="611.0">
                <columns>
-                  <TableColumn prefWidth="116.4" text="ID Product" />
-                  <TableColumn prefWidth="116.4" text="ID Client" />
-                  <TableColumn prefWidth="116.4" text="Product" />
-                  <TableColumn prefWidth="116.4" text="Opening" />
-                  <TableColumn prefWidth="116.4" text="Available" />
+                  <TableColumn fx:id="ColumIDproduct" prefWidth="129.0" text="ID Product" />
+                  <TableColumn fx:id="ColumIDclient" prefWidth="137.0" text="ID Client" />
+                  <TableColumn fx:id="TypeOfProduct" prefWidth="145.0" text="Product" />
+                  <TableColumn fx:id="opening" prefWidth="106.0" text="Opening" />
+                  <TableColumn fx:id="ColumAvailable" prefWidth="93.0" text="Available" />
                </columns>
             </TableView>
          </content>
