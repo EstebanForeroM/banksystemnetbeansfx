@@ -6,53 +6,39 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class ProductWindowController {
 
     @FXML
     private SplitMenuButton backButton;
-
     @FXML
-    private MenuItem ClientsMangement;
-
+    private MenuItem clientsManagement;
     @FXML
-    private MenuItem ProductsManagement;
-
+    private MenuItem productsManagement;
     @FXML
-    private MenuItem Tranferents;
-
+    private MenuItem tranferents;
     @FXML
     private TextField idTextField;
-
     @FXML
     private Button seeAllButton;
-
     @FXML
     private SplitMenuButton productsButton;
-
     @FXML
     private DatePicker openingDateDatePicker;
-
     @FXML
     private TextField numProductTextField;
-
     @FXML
-    private TextArea productDetailsTextArea1; // Assuming this is for product details
-
+    private TextArea productDetailsTextArea1;
     @FXML
-    private TextField anotherTextField; // Assuming this is for additional input
-
+    private TextField anotherTextField;
     @FXML
-    private TextArea productDetailsTextArea2; // Assuming this is for more product details
-
+    private TextArea productDetailsTextArea2;
     @FXML
     private Button createButton;
-
     @FXML
     private Button modifyButton;
-
     @FXML
     private Button eliminateButton;
 
@@ -62,24 +48,25 @@ public class ProductWindowController {
         // Your code here
     }
 
-    // Add other event handling methods here, e.g., for "See All", "Create",
-    // "Modify", "Eliminate"
-
+    // Event handling method for "See All" button click
     @FXML
     private void handleSeeAllButtonClick(ActionEvent event) {
         // Your code here
     }
 
+    // Event handling method for "Create" button click
     @FXML
     private void handleCreateButtonClick(ActionEvent event) {
         // Your code here
     }
 
+    // Event handling method for "Modify" button click
     @FXML
     private void handleModifyButtonClick(ActionEvent event) {
         // Your code here
     }
 
+    // Event handling method for "Eliminate" button click
     @FXML
     private void handleEliminateButtonClick(ActionEvent event) {
         // Your code here

@@ -19,42 +19,42 @@
                <children>
                   <AnchorPane fx:id="LeftPanel" prefHeight="450.0" prefWidth="197.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
                      <children>
-                         <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
+                         <SplitMenuButton fx:id="Navigation" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
                           <items>
                             <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" text="ClientsMangement" />
                             <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
                             <MenuItem fx:id="Tranferents" mnemonicParsing="false" text="Tranferents" />
                           </items>
                         </SplitMenuButton>
-                        <ImageView fitHeight="209.0" fitWidth="162.0" layoutX="17.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="ImagenUser" fitHeight="209.0" fitWidth="162.0" layoutX="17.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
           <AnchorPane layoutX="205.0" layoutY="12.0" minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="471.0">
                <children>
-                  <ScrollPane prefHeight="225.0" prefWidth="428.0">
+                  <ScrollPane prefHeight="225.0" prefWidth="480.0">
                      <content>
-                        <TableView prefHeight="238.0" prefWidth="541.0" stylesheets="@interface.css">
+                        <TableView fx:id="TableClient" prefHeight="238.0" prefWidth="541.0" stylesheets="@initialwindow.css">
                           <columns>
-                            <TableColumn prefWidth="120.0" text="ID" />
-                            <TableColumn prefWidth="173.0" text="Name" />
-                              <TableColumn prefWidth="120.0" text="Gender" />
+                            <TableColumn fx:id="ColumID" prefWidth="147.0" text="ID" />
+                            <TableColumn fx:id="ColumName" prefWidth="238.0" text="Name" />
+                              <TableColumn fx:id="ColumGender" prefWidth="116.0" text="Gender" />
                           </columns>
                         </TableView>
                      </content>
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <TextField layoutX="215.0" layoutY="286.0" prefHeight="25.0" prefWidth="173.0" />
+            <TextField fx:id="SearchForName" layoutX="226.0" layoutY="286.0" prefHeight="25.0" prefWidth="173.0" />
             <Text layoutX="226.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for name" />
-            <SplitMenuButton layoutX="226.0" layoutY="336.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="Gender">
+            <SplitMenuButton fx:id="SearchForGender" layoutX="226.0" layoutY="336.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Gender">
               <items>
                 <MenuItem mnemonicParsing="false" text="Male" />
                 <MenuItem mnemonicParsing="false" text="Famale" />
               </items>
             </SplitMenuButton>
-            <SplitMenuButton layoutX="450.0" layoutY="282.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Products">
+            <SplitMenuButton fx:id="SearchForProducts" layoutX="450.0" layoutY="282.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="151.0" text="Products">
                <items>
                   <MenuItem mnemonicParsing="false" text="Savings Account" />
                   <MenuItem mnemonicParsing="false" text="Current Account" />

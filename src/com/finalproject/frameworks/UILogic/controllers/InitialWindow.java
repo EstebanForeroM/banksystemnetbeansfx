@@ -4,6 +4,8 @@ import com.finalproject.frameworks.MainFunctionality;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,13 +17,13 @@ import javafx.stage.Stage;
 public class InitialWindow implements Initializable {
 
     @FXML
-    public Button ClientsManagement; // Button for Clients Management
+    public Button ClientsManagement;
 
     @FXML
-    private Button ProductsManagement; // Button for Products Management
+    private Button ProductsManagement;
 
     @FXML
-    private Button Transferences; // Button for Transferences
+    private Button Transferences;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,6 +41,8 @@ public class InitialWindow implements Initializable {
 
             currentStage.setScene(scene);
             currentStage.show();
+
+            Navigation.getInstance().fireEvent(currentStage, EventType.ROOT, new Navigation.SceneChangeEvent(scene));
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -58,6 +62,8 @@ public class InitialWindow implements Initializable {
             currentStage.setScene(scene);
             currentStage.show();
 
+            Navigation.getInstance().fireEvent(currentStage, EventType.ROOT, new Navigation.SceneChangeEvent(scene));
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -65,15 +71,21 @@ public class InitialWindow implements Initializable {
     
     @FXML
     public void eventTransferencesButtonClick() throws IOException {
-        String fxml = "initialWindow";
-        MainFunctionality.setRoot(fxml);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage newStage = new Stage();
-        newStage.setScene(scene);
-        newStage.show();
+        String fxml = "PasswordWindow";
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage currentStage = (Stage) this.Transferences.getScene().getWindow();
+
+            currentStage.setScene(scene);
+            currentStage.show();
+
+            Navigation.getInstance().fireEvent(currentStage, EventType.ROOT, new Navigation.SceneChangeEvent(scene));
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-    
-    // Additional methods for handling other button clicks can be added below
 }

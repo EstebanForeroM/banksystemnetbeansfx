@@ -22,7 +22,7 @@
            <children>
               <AnchorPane fx:id="LeftPanel" prefHeight="462.0" prefWidth="213.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
                  <children>
-                    <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
+                    <SplitMenuButton fx:id="Navigation" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
                       <items>
                         <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" text="ClientsMangement" />
                         <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
@@ -53,6 +53,6 @@
         <Text layoutX="282.0" layoutY="79.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
         <Text layoutX="285.0" layoutY="193.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
         <Text layoutX="384.0" layoutY="261.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" wrappingWidth="56.5869140625" />
-        <Text layoutX="277.0" layoutY="135.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Clue" />
+        <Text layoutX="295.0" layoutY="135.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="52.451171875" />
     </children>
 </AnchorPane>

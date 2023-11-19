@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.finalproject.frameworks.Services;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -26,6 +28,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
+
+import javax.swing.*;
 
 /**
  * FXML Controller class
@@ -146,20 +150,30 @@ public class ClientWindowController implements Initializable {
 
     }
 
+    @FXML
     public void handleSeeAllButtonClicked(ActionEvent event) {
+        // Verificar si userSearcher es nulo antes de llamar a getClients()
+        if (Services.userSearcher == null) {
+            JOptionPane.showMessageDialog(null, "There are no clients! Create a client", "Success", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         String fxml = "AllClientsView";
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-
             Stage currentStage = (Stage) this.SeeAll.getScene().getWindow();
+
+            if (loader.getController() == null) {
+                throw new IOException("Error loading " + fxml + ".fxml");
+            }
 
             currentStage.setScene(scene);
             currentStage.show();
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
 }
