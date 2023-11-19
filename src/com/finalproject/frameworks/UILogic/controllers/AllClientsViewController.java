@@ -1,5 +1,8 @@
 package com.finalproject.frameworks.UILogic.controllers;
 
+import com.finalproject.entities.Client;
+import com.finalproject.entities.Gender;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -7,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+
+import java.util.List;
 
 public class AllClientsViewController {
 
@@ -23,18 +28,20 @@ public class AllClientsViewController {
     private TextField searchField;
 
     @FXML
-    private TableView<?> clientsTable;
+    private TableView<Client> clientsTable;
     @FXML
-    private TableColumn<?, ?> columnID;
+    private TableColumn<Client, String> columnID;
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableColumn<Client, String> columnName;
     @FXML
-    private TableColumn<?, ?> columnGender;
+    private TableColumn<Gender, String> columnGender;
 
     // Initialize method if needed
     @FXML
     public void initialize() {
-        // Initialization logic here
+        columnID.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
+        columnName.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getName()));
+        columnGender.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getGenderName()));
     }
 
     // Event handlers

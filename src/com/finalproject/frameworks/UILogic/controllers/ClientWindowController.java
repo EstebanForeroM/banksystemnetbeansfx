@@ -87,19 +87,7 @@ public class ClientWindowController implements Initializable {
     // Initialization code here, if any
 
     private void saveClient() {
-        String clientID = clientIDTextField.getText();
-        String name = nameTextField.getText();
-        var clue = clueTextField.getText();
-        Gender gender = getSelectedGender();
 
-        try {
-            Client newClient = new Client(clientID, name, gender, "password");
-            clientManager.addClient(newClient);
-            passwordManager.validatePassword("password");
-            System.out.println("Client saved successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private Gender getSelectedGender() {
@@ -151,27 +139,11 @@ public class ClientWindowController implements Initializable {
 
     @FXML
     public void handleSaveChangesButtonClicked(ActionEvent event) {
-        int clientId = Integer.parseInt(clientIDTextField.getText());
-        saveClient();
-        
-        Client client = clientManager.getClientByID(clientId);
-        addSelectedProducts(client);
-        clientManager.addClient(client);
+
     }
 
     private void addSelectedProducts(Client client) {
-        CheckBox[] productCheckboxes = {
-            SavingsAccount, CurrentAccount, CDT, VisaCard, AmericanCard
-        };
 
-        for (CheckBox checkbox : productCheckboxes) {
-            if (checkbox.isSelected()) {
-                ProductType productType = ProductType.valueOf(checkbox.getText());
-
-                Product product = new Product(productType, client.getClientId());
-                product.addProduct(product);
-            }
-        }
     }
 
     public void handleSeeAllButtonClicked(ActionEvent event) {
