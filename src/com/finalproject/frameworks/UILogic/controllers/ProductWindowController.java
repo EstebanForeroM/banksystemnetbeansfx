@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public class ProductWindowController {
 
@@ -106,12 +107,12 @@ public class ProductWindowController {
 
     @FXML
     private void ProductsOfClient(ActionEvent event) {
-        List<Product> productsOfClient = (List<Product>) Services.productSearcher.getProductsById(idClient);
+        Set<Product> productsOfClient =  Services.productSearcher.getProductsById(idClient);
         // Clean the menu
         productsMenu.getItems().clear();
         //Create a MenuItem for each product and add it to the menu
         for (Product product : productsOfClient) {
-            MenuItem menuItem = new MenuItem(Services.productSearcher.getProductsByType();
+            MenuItem menuItem = new MenuItem(product.getProductName());
             menuItem.setOnAction(e -> handleProductMenuItemClick(product));
             productsMenu.getItems().add(menuItem);
         }
@@ -120,35 +121,36 @@ public class ProductWindowController {
     @FXML
     private void handleProductMenuItemClick(Product product) {
         //Cases for type of product
-        switch (Services.productSearcher.getProductsByType()) {
+        switch (product.getProductName()) {
             case "Type1":
                 // Acciones para el tipo 1
                 break;
             case "Type2":
                 // Acciones para el tipo 2
                 break;
+        }
     }
 
-    // Event handling method for "Create" button click
-    @FXML
-    private void handleCreateButtonClick(ActionEvent event) {
+        // Event handling method for "Create" button click
+        @FXML
+        private void handleCreateButtonClick(ActionEvent event) {
 
+        }
+
+        // Event handling method for "Modify" button click
+        @FXML
+        private void handleModifyButtonClick(ActionEvent event) {
+            // Your code here
+        }
+
+        // Event handling method for "Eliminate" button click
+        @FXML
+        private void handleEliminateButtonClick(ActionEvent event) {
+            // Your code here
+        }
+
+        // Initialize method, if needed
+
+
+        // Add additional methods for other menu items and actions as necessary
     }
-
-    // Event handling method for "Modify" button click
-    @FXML
-    private void handleModifyButtonClick(ActionEvent event) {
-        // Your code here
-    }
-
-    // Event handling method for "Eliminate" button click
-    @FXML
-    private void handleEliminateButtonClick(ActionEvent event) {
-        // Your code here
-    }
-
-    // Initialize method, if needed
-
-
-    // Add additional methods for other menu items and actions as necessary
-}

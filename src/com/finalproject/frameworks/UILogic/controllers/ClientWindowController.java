@@ -90,7 +90,7 @@ public class ClientWindowController implements Initializable {
     }
 
     private void saveClient() {
-
+        
     }
 
     private Gender getSelectedGender() {
