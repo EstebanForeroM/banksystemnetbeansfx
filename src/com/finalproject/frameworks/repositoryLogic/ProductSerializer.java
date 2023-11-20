@@ -39,8 +39,9 @@ public class ProductSerializer implements Serializer<Product> {
         String[] productData = productString.split(",");
         Product product = null;
 
-        if (productString.startsWith(ProductType.UninitializedProduct.getName())) {
-            product = new UninitializedProduct(productData[1], productData[2], ProductType.getProductType(productData[5]));
+        if (productData.length < 6) {
+            System.err.println("Error: Insuficientes elementos en el array productData.");
+            return null;
         } else if (productString.startsWith(ProductType.CDT.getName())) {
             product = new CDT(productData[1], productData[2], getDateFromString(productData[3]), Integer.parseInt(productData[5]));
         } else if (productString.startsWith(ProductType.VISA_CARD.getName())) {
