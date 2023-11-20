@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import com.finalproject.entities.products.UninitializedProduct;
 import com.finalproject.frameworks.Services;
 import com.finalproject.useCases.Token;
 import javafx.fxml.FXML;
@@ -104,8 +105,6 @@ public class ClientWindowController implements Initializable {
 
         Services.addOnClientAddedListener(this::clientListChanges);
 
-        clientListChanges();
-
         imagePath = "@../../../../../img/defaultProfile.png";
         Gender[] genders = Gender.values();
         String[] genderNames = new String[genders.length];
@@ -114,6 +113,8 @@ public class ClientWindowController implements Initializable {
             genderNames[i] = genders[i].getGenderName();
         }
         gender.getItems().addAll(genderNames);
+
+        clientListChanges();
     }
 
     private void clientListChanges() {
@@ -151,6 +152,7 @@ public class ClientWindowController implements Initializable {
             Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId, imagePath);
             Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
             addSelectedProducts(clientToken);
+            JOptionPane.showMessageDialog(null, "Client created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -235,7 +237,8 @@ public class ClientWindowController implements Initializable {
 
     @FXML
     private void handleRightButton(ActionEvent event) throws IOException {
-        actualClientIndex = (actualClientIndex + 1) > actualClients.size() ? 0 : actualClientIndex + 1;
+        if (!verifyActualClients()) return;
+        actualClientIndex = (actualClientIndex + 1) > actualClients.size() - 1 ? 0 : actualClientIndex + 1;
 
         cleaner();
         loadClient(actualClients.get(actualClientIndex));
@@ -244,6 +247,7 @@ public class ClientWindowController implements Initializable {
 
     @FXML
     private void handleLeftButton(ActionEvent event) throws IOException {
+        if (!verifyActualClients()) return;
         actualClientIndex = (actualClientIndex - 1) < 0 ? actualClients.size() - 1 : actualClientIndex - 1;
 
         cleaner();
@@ -251,11 +255,25 @@ public class ClientWindowController implements Initializable {
         System.out.println(actualClientIndex);
     }
 
+    private boolean verifyActualClients() {
+        if (actualClients.isEmpty())
+            clientListChanges();
+        if (actualClients.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "There are no clients! Create a client", "Success", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
     private void loadClient(Client client) {
 
-        Set<Product> products = Services.productSearcher.getProductsByOwner(client.getId());
+        Set<Product> products = Services.productSearcher.getProductsByUniqueOwner(client.getId());
         for (Product product : products) {
+
             String productName = product.getProductName();
+
+            if (product instanceof UninitializedProduct)
+                productName = ((UninitializedProduct) product).getProductType().getName();
 
             if (productName.equals(ProductType.CDT.getName())) {
                 CDT.setSelected(true);
@@ -275,13 +293,33 @@ public class ClientWindowController implements Initializable {
                 imagePath = "@../../../../../img/defaultProfile.png";
             }
 
-            userImageView.setImage(new Image(imagePath));
+            loadImage(imagePath);
         }
 
         clientIDTextField.setText(client.getId());
         nameTextField.setText(client.getName());
         passwordTextField.setText("");
     }
+
+    private void loadImage(String imagePath) {
+        Image image;
+
+        if (imagePath.startsWith("@")) {
+            String resourcePath = imagePath.substring(1); // Remove the '@' symbol
+            image = new Image(getClass().getResourceAsStream(resourcePath));
+        } else {
+            File file = new File(imagePath);
+            if (file.exists()) {
+                image = new Image(file.toURI().toString());
+            } else {
+                System.out.println("File not found: " + imagePath);
+                return;
+            }
+        }
+
+        userImageView.setImage(image);
+    }
+
 
     @FXML
     private void handlereturnWindow(ActionEvent event) throws IOException {

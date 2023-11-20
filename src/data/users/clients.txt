@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-5654645,dgfdgdf,Female,gdfgdg,@../../../../../img/defaultProfile.png
-=======
-55454644,Esteban David Hernandez,Male,5454654,C:\Users\maste\OneDrive\Imágenes\i.jpg
-448784649,david Belez,Other,487494,C:\Users\maste\OneDrive\Imágenes\hola.jpg
->>>>>>> master
+dsgaddfd dgdag,86356,Male,rertetre,C:/Users/esteb/Downloads/DALL·E 2023-11-19 21.02.12 - A default profile picture for users who have not chosen an image in an application. The design should be neutral and universal, suitable for any user.png
+esdf ese,888888,Female,rsett ,@../../../../../img/defaultProfile.png
+esdf ese g,8888884,Female,rsett 6546,C:/Users/esteb/Downloads/leftArrow.png
