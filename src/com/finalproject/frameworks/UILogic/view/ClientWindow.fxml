@@ -26,7 +26,7 @@
                   <Button fx:id="SearchPicture" layoutX="19.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleSearchPictureButtonClicked" prefHeight="33.0" prefWidth="176.0" text="Search Picture" />
                   <ImageView fx:id="userImageView" fitHeight="187.0" fitWidth="200.0" layoutX="7.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="returnWindow" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlereturnWindow" prefHeight="25.0" prefWidth="63.0" text="Return" />
-                  <Button fx:id="Right" layoutX="46.0" layoutY="244.0" mnemonicParsing="false">
+                  <Button fx:id="Right" layoutX="46.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleRightButton">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,7 +35,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="Left" layoutX="130.0" layoutY="244.0" mnemonicParsing="false">
+                  <Button fx:id="Left" layoutX="130.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleLeftButton">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
