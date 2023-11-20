@@ -82,6 +82,10 @@ public class ClientWindowController implements Initializable {
     private CheckBox AmericanCard;
     @FXML
     private Button returnWindow;
+    @FXML
+    private Button Right;
+    @FXML
+    private Button Left;
 
     private String imagePath;
 
@@ -122,7 +126,6 @@ public class ClientWindowController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
 
     @FXML
     private void handleaddNewClientButtonClicked(ActionEvent event) {
@@ -227,6 +230,14 @@ public class ClientWindowController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleRightButton(ActionEvent event) throws IOException {
+    }
+
+    @FXML
+    private void handleLeftButton(ActionEvent event) throws IOException {
     }
 
     @FXML
