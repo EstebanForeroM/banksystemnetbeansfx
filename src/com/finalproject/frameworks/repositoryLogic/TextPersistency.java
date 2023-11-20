@@ -41,6 +41,9 @@ public class TextPersistency<T extends Identifiable> {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
+                if (data.trim().equals("")) {
+                    continue;
+                }
                 String[] objectData = data.split(",");
                 objects.put(objectData[1], data);
             }

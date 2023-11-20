@@ -43,8 +43,8 @@
             <TextField fx:id="searchForName" layoutX="226.0" layoutY="286.0" onAction="#handleSearchForName" prefHeight="25.0" prefWidth="173.0" />
             <Text layoutX="248.0" layoutY="277.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for name" />
             <Text layoutX="237.0" layoutY="349.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" wrappingWidth="43.705078125" />
-            <ChoiceBox fx:id="searchForProduct" layoutX="226.0" layoutY="357.0" prefHeight="25.0" prefWidth="162.0" />
-            <ChoiceBox fx:id="searchForGender" layoutX="456.0" layoutY="286.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="searchByProduct" layoutX="226.0" layoutY="357.0" prefHeight="25.0" prefWidth="162.0" />
+            <ChoiceBox fx:id="searchByGender" layoutX="456.0" layoutY="286.0" prefWidth="150.0" />
             <Text layoutX="467.0" layoutY="277.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" wrappingWidth="42.47005271911621" />
          </children>
       </AnchorPane>

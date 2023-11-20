@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/UILogic/controllers/PasswordWindowController.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/MainFunctionality.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/UILogic/controllers/Navigation.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/useCases/UserCreationService.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/UILogic/controllers/ProductWindowController.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/UILogic/controllers/ClientWindowController.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/UILogic/controllers/AllClientsViewController.java</file>
-            <file>file:/E:/Unisabana/Second%20semester/OPP/JavaFinalProject/NetBeansProject/banksystem/src/com/finalproject/frameworks/UILogic/view/ClientWindow.fxml</file>
+            <file>file:/C:/Users/maste/OneDrive/Desktop/banksystemnetbeansfx/src/com/finalproject/frameworks/UILogic/view/ProductWindow.fxml</file>
+            <file>file:/C:/Users/maste/OneDrive/Desktop/banksystemnetbeansfx/src/data/products/products.txt</file>
+            <file>file:/C:/Users/maste/OneDrive/Desktop/banksystemnetbeansfx/src/com/finalproject/frameworks/UILogic/controllers/InitialWindow.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Desktop/banksystemnetbeansfx/src/data/users/clients.txt</file>
         </group>
     </open-files>
 </project-private>

@@ -213,7 +213,7 @@ public class ClientWindowController implements Initializable {
     @FXML
     public void handleSeeAllButtonClicked(ActionEvent event) {
         // Verificar si userSearcher es nulo antes de llamar a getClients()
-        if (Services.userSearcher == null) {
+        if (Services.userSearcher.getClients().isEmpty()) {
             JOptionPane.showMessageDialog(null, "There are no clients! Create a client", "Success", JOptionPane.INFORMATION_MESSAGE);
             return;
         }

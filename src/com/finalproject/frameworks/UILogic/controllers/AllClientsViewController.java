@@ -5,8 +5,6 @@ import com.finalproject.entities.Gender;
 import com.finalproject.entities.Product;
 import com.finalproject.entities.products.ProductType;
 import com.finalproject.frameworks.Services;
-import com.finalproject.useCases.ProductSearcher;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,8 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.security.Provider;
-import java.util.HashSet;
 import java.util.Set;
 
 public class AllClientsViewController {
@@ -44,12 +40,12 @@ public class AllClientsViewController {
     @FXML
     private TableColumn<Gender, String> columnGender;
     @FXML
-    private ChoiceBox<String> searchForGender;
+    private ChoiceBox<String> searchByGender;
     @FXML
-    private ChoiceBox<String> searchForProduct;
+    private ChoiceBox<String> searchByProduct;
 
-    private String[] SearchForGender;
-    private String[] SearchForProduct;
+    private String[] searchForGender;
+    private String[] searchForProduct;
 
     private ObservableList<Client> clients = FXCollections.observableArrayList();
 
@@ -70,7 +66,7 @@ public class AllClientsViewController {
         for (int i = 0; i < genderNames.length; i++) {
             genderNames[i] = genders[i].getGenderName();
         }
-        searchForGender.getItems().addAll(genderNames);
+        searchByGender.getItems().addAll(genderNames);
 
         ProductType[] productTypes = ProductType.values();
         String[] productTypeNames = new String[productTypes.length];
@@ -78,32 +74,25 @@ public class AllClientsViewController {
         for (int i = 0; i < productTypeNames.length; i++) {
             productTypeNames[i] = productTypes[i].getName();
         }
-        searchForProduct.getItems().addAll(productTypeNames);
+        searchByProduct.getItems().addAll(productTypeNames);
     }
     // Event handlers
 
     @FXML
     private void handleSearchForGender(ActionEvent event) {
         // Search item selected
-        String selectedGender = searchForGender.getValue();
+        String selectedGender = searchByGender.getValue();
+        // Filtered table
+        Set<Client> clientsByGender = Services.userSearcher.getClientsByGender(Gender.getGenderFromGenderName(selectedGender));
+        ObservableList<Client> filteredClients = FXCollections.observableArrayList(clientsByGender);
 
-        if (selectedGender != null && !selectedGender.isEmpty()) {
-            // Filtered table
-            Set<Client> clientsByGender = Services.userSearcher.getClientsByGender(Gender.getGenderFromGenderName(selectedGender));
-            ObservableList<Client> filteredClients = FXCollections.observableArrayList(clientsByGender);
-
-            tableClient.setItems(filteredClients);
-        } else {
-            // Table refresh
-            ObservableList<Client> filteredClients = FXCollections.observableArrayList(Services.userSearcher.getClientsByGender(Gender.getGenderFromGenderName(selectedGender)));
-            tableClient.setItems(filteredClients);
-        }
+        tableClient.setItems(filteredClients);
     }
 
     @FXML
     private void handleSearchForProduct(ActionEvent event) {
         // Get the selected product type
-        String selectedProductType = searchForProduct.getValue();
+        String selectedProductType = searchByProduct.getValue();
 
         if (selectedProductType != null && !selectedProductType.isEmpty()) {
             // Filtered table
