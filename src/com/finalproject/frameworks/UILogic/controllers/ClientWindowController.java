@@ -1,5 +1,6 @@
 package com.finalproject.frameworks.UILogic.controllers;
 
+import com.finalproject.entities.Client;
 import com.finalproject.entities.Gender;
 import com.finalproject.entities.products.ProductType;
 import java.io.File;
@@ -82,10 +83,15 @@ public class ClientWindowController implements Initializable {
     @FXML
     private CheckBox AmericanCard;
 
+    private String imagePath;
+
     private String[] genders;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        imagePath = "@../../../../../img/defaultProfile.png";
+
         Gender[] genders = Gender.values();
 
         String[] genderNames = new String[genders.length];
@@ -105,12 +111,39 @@ public class ClientWindowController implements Initializable {
         Gender clientGender = Gender.getGenderFromGenderName(gender.getValue());
         String clientPassword = passwordTextField.getText();
 
-        Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId);
-        // !!!!!!! add logic if the image path is added
+        try {
+            Client client = Services.userSearcher.getClientById(clientId);
 
-        Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
+            Token clientToken = Services.tokenAuthenticationService.getToken(clientPassword);
 
-        addSelectedProducts(clientToken);
+            Services.userModificationService.modifyUser(clientToken, clientName, client.getPassword(), clientGender, imagePath);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @FXML
+    private void handleaddNewClientButtonClicked(ActionEvent event) {
+
+        String clientName = nameTextField.getText();
+        String clientId= clientIDTextField.getText();
+        Gender clientGender = Gender.getGenderFromGenderName(gender.getValue());
+        String clientPassword = passwordTextField.getText();
+
+        try {
+            Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId, imagePath);
+
+            Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
+
+            addSelectedProducts(clientToken);
+
+            saveClient();
+            cleaner();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void cleaner() {
@@ -123,12 +156,6 @@ public class ClientWindowController implements Initializable {
         clientIDTextField.setText("");
         nameTextField.setText("");
         clueTextField.setText("");
-    }
-
-    @FXML
-    private void handleaddNewClientButtonClicked(ActionEvent event) {
-        saveClient();
-        cleaner();
     }
 
     private void addSelectedProducts(Token token) {
@@ -172,10 +199,12 @@ public class ClientWindowController implements Initializable {
             try {
                 // Set the selected image to the ImageView or any other control you want to display it
                 userImageView.setImage(new Image(selectedFile.toURI().toString()));
+
             } catch (Exception e) {
                 System.err.println("Error loading image: " + e.getMessage());
                 e.printStackTrace();
             }
+            imagePath = selectedFile.getAbsolutePath();
         } else {
             System.out.println("User canceled image selection.");
         }
