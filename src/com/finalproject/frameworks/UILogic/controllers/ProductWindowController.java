@@ -11,12 +11,12 @@ import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 public class ProductWindowController {
 
-    private TextField SearcheForID;
+    @FXML
+    private TextField SearcheForId;
     @FXML
     private Button seeAllButton;
     @FXML
@@ -36,6 +36,10 @@ public class ProductWindowController {
     @FXML
     private Button eliminateButton;
     @FXML
+    private Button returnButton;
+    @FXML
+    private Button searchByIdOclient;
+    @FXML
     private ChoiceBox<String> productsOfClient;
     @FXML
     private TextField saldo;
@@ -45,8 +49,6 @@ public class ProductWindowController {
     private TextField NumProduct;
     @FXML
     private TextField termmonths;
-    @FXML
-    private TextField searchById;
     private String idClient = null;
 
 
@@ -76,12 +78,12 @@ public class ProductWindowController {
     private void handleSeeAllButtonClick(ActionEvent event) {
         String fxml = "AllProductsView.fxml";
         Node sourceNode = (Node) event.getSource();
-        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/"+ fxml +".fxml", sourceNode);
+        Navigation.getInstance().navigateToRemplaceScene("/com/finalproject/frameworks/UILogic/view/"+ fxml +".fxml", sourceNode);
     }
 
     @FXML
     private void SearcheForID(ActionEvent event) {
-        String id = SearcheForID.getText();
+        String id = SearcheForId.getText();
         Client clienteEncontrado = Services.userSearcher.getClientById(id);
         if (clienteEncontrado != null) {
             // show client details

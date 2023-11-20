@@ -45,7 +45,7 @@ public class Navigation {
         Event.fireEvent(source, sceneChangeEvent);
     }
 
-    public void navigateTo(String fxmlPath, Node sourceNode) {
+    public void navigateToRemplaceScene(String fxmlPath, Node sourceNode) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
@@ -63,6 +63,19 @@ public class Navigation {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public void navigateToNewScene(String fxml){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/finalproject/frameworks/UILogic/view/"+fxml+".fxml"));
+            Parent root = loader.load();
+            Scene newScene = new Scene(root);
+            Stage currentStage = new Stage();
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

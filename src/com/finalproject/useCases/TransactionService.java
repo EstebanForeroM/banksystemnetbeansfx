@@ -17,7 +17,6 @@ public class TransactionService {
     public void deposit(Token token, String productId, double amount) {
         if (!tokenAuthenticationService.validate(token))
             throw new IllegalArgumentException("Invalid token");
-
         Product product = productRepository.getProduct(productId);
 
         if (product instanceof Transactional) {
