@@ -296,6 +296,8 @@ public class ClientWindowController implements Initializable {
             loadImage(imagePath);
         }
 
+        gender.setValue(client.getGender().getGenderName());
+
         clientIDTextField.setText(client.getId());
         nameTextField.setText(client.getName());
         passwordTextField.setText("");
