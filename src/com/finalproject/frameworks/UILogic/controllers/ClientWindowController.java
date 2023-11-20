@@ -2,11 +2,15 @@ package com.finalproject.frameworks.UILogic.controllers;
 
 import com.finalproject.entities.Client;
 import com.finalproject.entities.Gender;
+import com.finalproject.entities.Product;
 import com.finalproject.entities.products.ProductType;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import com.finalproject.frameworks.Services;
 import com.finalproject.useCases.Token;
@@ -89,10 +93,18 @@ public class ClientWindowController implements Initializable {
 
     private String imagePath;
 
-    private String[] genders;
+    private List<Client> actualClients;
+
+    private int actualClientIndex = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        actualClients = new ArrayList<>();
+
+        Services.addOnClientAddedListener(this::clientListChanges);
+
+        clientListChanges();
 
         imagePath = "@../../../../../img/defaultProfile.png";
         Gender[] genders = Gender.values();
@@ -102,6 +114,10 @@ public class ClientWindowController implements Initializable {
             genderNames[i] = genders[i].getGenderName();
         }
         gender.getItems().addAll(genderNames);
+    }
+
+    private void clientListChanges() {
+        actualClients = Services.userSearcher.getClients();
     }
 
 
@@ -136,8 +152,6 @@ public class ClientWindowController implements Initializable {
             Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
             addSelectedProducts(clientToken);
 
-            saveClient();
-            cleaner();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -221,10 +235,52 @@ public class ClientWindowController implements Initializable {
 
     @FXML
     private void handleRightButton(ActionEvent event) throws IOException {
+        actualClientIndex = (actualClientIndex + 1) > actualClients.size() ? 0 : actualClientIndex + 1;
+
+        cleaner();
+        loadClient(actualClients.get(actualClientIndex));
+        System.out.println(actualClientIndex);
     }
 
     @FXML
     private void handleLeftButton(ActionEvent event) throws IOException {
+        actualClientIndex = (actualClientIndex - 1) < 0 ? actualClients.size() - 1 : actualClientIndex - 1;
+
+        cleaner();
+        loadClient(actualClients.get(actualClientIndex));
+        System.out.println(actualClientIndex);
+    }
+
+    private void loadClient(Client client) {
+
+        Set<Product> products = Services.productSearcher.getProductsByOwner(client.getId());
+        for (Product product : products) {
+            String productName = product.getProductName();
+
+            if (productName.equals(ProductType.CDT.getName())) {
+                CDT.setSelected(true);
+            } else if (productName.equals(ProductType.CHECKING_ACCOUNT.getName())) {
+                CurrentAccount.setSelected(true);
+            } else if (productName.equals(ProductType.SAVINGS_ACCOUNT.getName())) {
+                SavingsAccount.setSelected(true);
+            } else if (productName.equals(ProductType.VISA_CARD.getName())) {
+                VisaCard.setSelected(true);
+            } else if (productName.equals(ProductType.AMERICAN_EXPRESS.getName())) {
+                AmericanCard.setSelected(true);
+            }
+
+            String imagePath = client.getPhotoPath();
+
+            if (imagePath == null) {
+                imagePath = "@../../../../../img/defaultProfile.png";
+            }
+
+            userImageView.setImage(new Image(imagePath));
+        }
+
+        clientIDTextField.setText(client.getId());
+        nameTextField.setText(client.getName());
+        passwordTextField.setText("");
     }
 
     @FXML
