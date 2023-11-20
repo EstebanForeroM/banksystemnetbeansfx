@@ -21,12 +21,7 @@ public class AllProductsViewController {
     @FXML
     private MenuItem tranferents;
     @FXML
-    private SplitMenuButton searchProductByproduct;
-    @FXML
     private TextField searchForID;
-    @FXML
-    private SplitMenuButton searchProductByIDclient;
-
     @FXML
     private TableView<Product> productsTableView;
     @FXML

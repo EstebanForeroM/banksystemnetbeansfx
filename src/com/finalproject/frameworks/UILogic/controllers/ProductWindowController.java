@@ -7,12 +7,7 @@ import com.finalproject.frameworks.Services;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -21,8 +16,6 @@ import java.util.Set;
 
 public class ProductWindowController {
 
-    @FXML
-    private SplitMenuButton backButton;
     @FXML
     private MenuItem clientsManagement;
     @FXML
@@ -33,8 +26,6 @@ public class ProductWindowController {
     private TextField SearcheForID;
     @FXML
     private Button seeAllButton;
-    @FXML
-    private SplitMenuButton productsMenu;
     @FXML
     private DatePicker openingDateDatePicker;
     @FXML
@@ -53,7 +44,13 @@ public class ProductWindowController {
     private Button eliminateButton;
     @FXML
     private MenuItem ProductsOfClient;
+    @FXML
+    private ChoiceBox<String> searchForGender;
+    @FXML
+    private ChoiceBox<String> searchForProduct;
 
+    private String[] SearchForGender = {"Masculino", "Femenino"};
+    private String[] SearchForProduct;
     private String idClient = null;
 
     // Event handling method for "ClientsMangement" menu item click
@@ -109,13 +106,6 @@ public class ProductWindowController {
     private void ProductsOfClient(ActionEvent event) {
         Set<Product> productsOfClient =  Services.productSearcher.getProductsById(idClient);
         // Clean the menu
-        productsMenu.getItems().clear();
-        //Create a MenuItem for each product and add it to the menu
-        for (Product product : productsOfClient) {
-            MenuItem menuItem = new MenuItem(product.getProductName());
-            menuItem.setOnAction(e -> handleProductMenuItemClick(product));
-            productsMenu.getItems().add(menuItem);
-        }
     }
 
     @FXML
