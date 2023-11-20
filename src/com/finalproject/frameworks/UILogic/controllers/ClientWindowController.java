@@ -1,8 +1,6 @@
 package com.finalproject.frameworks.UILogic.controllers;
 
-import com.finalproject.entities.Client;
 import com.finalproject.entities.Gender;
-import com.finalproject.entities.Product;
 import com.finalproject.entities.products.ProductType;
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class ClientWindowController implements Initializable {
     @FXML
     private ImageView userImageView;
     @FXML
-    private TextField PasswordTextField;
+    private TextField passwordTextField;
     @FXML
     private AnchorPane LeftPanel;
     @FXML
@@ -105,7 +103,7 @@ public class ClientWindowController implements Initializable {
         String clientName = nameTextField.getText();
         String clientId= clientIDTextField.getText();
         Gender clientGender = Gender.getGenderFromGenderName(gender.getValue());
-        String clientPassword = PasswordTextField.getText();
+        String clientPassword = passwordTextField.getText();
 
         Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId);
         // !!!!!!! add logic if the image path is added
@@ -115,10 +113,24 @@ public class ClientWindowController implements Initializable {
         addSelectedProducts(clientToken);
     }
 
+    public void cleaner() {
+        this.SavingsAccount.setSelected(false);
+        this.CurrentAccount.setSelected(false);
+        this.CDT.setSelected(false);
+        this.VisaCard.setSelected(false);
+        this.AmericanCard.setSelected(false);
+
+        clientIDTextField.setText("");
+        nameTextField.setText("");
+        clueTextField.setText("");
+    }
+
     @FXML
     private void handleaddNewClientButtonClicked(ActionEvent event) {
         saveClient();
+        cleaner();
     }
+
     private void addSelectedProducts(Token token) {
         if (SavingsAccount.isSelected()) {
             Services.productCreationService.addProduct(token, ProductType.SAVINGS_ACCOUNT);
@@ -138,7 +150,7 @@ public class ClientWindowController implements Initializable {
     }
 
     private Gender getSelectedGender() {
-        
+        return null;
     }
 
     @FXML
@@ -168,24 +180,6 @@ public class ClientWindowController implements Initializable {
             System.out.println("User canceled image selection.");
         }
     }
-    
-    @FXML
-    public void handleCleanButtonClicked(ActionEvent event) {
-        this.SavingsAccount.setSelected(false);
-        this.CurrentAccount.setSelected(false);
-        this.CDT.setSelected(false);
-        this.VisaCard.setSelected(false);
-        this.AmericanCard.setSelected(false);
-        
-        clientIDTextField.setText("");
-        nameTextField.setText("");
-        clueTextField.setText("");
-    }
-
-    @FXML
-    public void handleSaveChangesButtonClicked(ActionEvent event) {
-        saveClient();
-    }
 
     @FXML
     public void handleSeeAllButtonClicked(ActionEvent event) {
@@ -205,12 +199,10 @@ public class ClientWindowController implements Initializable {
             if (loader.getController() == null) {
                 throw new IOException("Error loading " + fxml + ".fxml");
             }
-
             currentStage.setScene(scene);
             currentStage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-
 }

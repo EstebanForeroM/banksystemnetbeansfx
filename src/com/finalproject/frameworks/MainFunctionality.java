@@ -20,7 +20,7 @@ public class MainFunctionality extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("initialWindow"), 635, 455);
-        
+        new Services();
         URL imageUrl = MainFunctionality.class.getResource("/img/logo.png");
         if (imageUrl == null) {
             throw new IllegalArgumentException("Image not found!");
