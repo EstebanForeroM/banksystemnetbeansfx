@@ -1,3 +1,3 @@
-Uninitialized product,7991277157,4654644,2023-11-19 20:16:11,Checking account
-Uninitialized product,9078167900,4654644,2023-11-19 20:16:11,Savings account
 Uninitialized product,0318029461,4654644,2023-11-19 20:16:11,CDT
+Uninitialized product,0962741039,423423,2023-11-19 21:55:18,Checking account
+Uninitialized product,8644803402,423423,2023-11-19 21:55:18,Savings account
