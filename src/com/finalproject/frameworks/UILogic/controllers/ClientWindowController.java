@@ -134,9 +134,7 @@ public class ClientWindowController implements Initializable {
 
         try {
             Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId, imagePath);
-
             Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
-
             addSelectedProducts(clientToken);
 
             saveClient();
