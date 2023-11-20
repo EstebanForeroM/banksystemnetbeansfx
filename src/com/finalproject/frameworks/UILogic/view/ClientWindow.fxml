@@ -24,7 +24,7 @@
                   <Button fx:id="modifyClient" layoutX="19.0" layoutY="328.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="176.0" text="Modify Client" />
                   <Button fx:id="SearchPicture" layoutX="19.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleSearchPictureButtonClicked" prefHeight="33.0" prefWidth="176.0" text="Search Picture" />
                   <ImageView fx:id="userImageView" fitHeight="187.0" fitWidth="200.0" layoutX="7.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="returnWindow" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Return" />
+                  <Button fx:id="returnWindow" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlereturnWindow" prefHeight="25.0" prefWidth="63.0" text="Return" />
                  </children>
               </AnchorPane>
            </children>

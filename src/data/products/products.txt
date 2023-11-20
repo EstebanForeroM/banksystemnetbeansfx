@@ -1,6 +1,2 @@
-Uninitialized product,6512768059,55454546,2023-11-19 21:40:57,Visa card
-Uninitialized product,2951409138,44946464,2023-11-19 21:46:08,CDT
-Uninitialized product,3390880894,44946464,2023-11-19 21:46:08,Checking account
-Uninitialized product,6348249192,44946464,2023-11-19 21:46:08,American Express card
-Uninitialized product,6319249540,44946464,2023-11-19 21:46:08,Savings account
-Uninitialized product,6907315157,44946464,2023-11-19 21:46:08,Visa card
+Uninitialized product,0452100579,4646645465,2023-11-19 22:07:43,Visa card
+Uninitialized product,7953168004,4646645465,2023-11-19 22:17:16,Savings account
