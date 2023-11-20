@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.finalproject.frameworks.Services;
+import com.finalproject.useCases.Token;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -51,6 +52,8 @@ public class ClientWindowController implements Initializable {
     @FXML
     private ImageView userImageView;
     @FXML
+    private TextField PasswordTextField;
+    @FXML
     private AnchorPane LeftPanel;
     @FXML
     private MenuItem ClientsMangement;
@@ -89,8 +92,38 @@ public class ClientWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 
+
+
     private void saveClient() {
-        
+        String clientName = nameTextField.getText();
+        String clientId= clientIDTextField.getText();
+        Gender clientGender = Gender.getGenderFromGenderName(genderMenuButton.getText());
+        String clientPassword = PasswordTextField.getText();
+
+        Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId);
+        // !!!!!!! add logic if the image path is added
+
+        Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
+
+        addSelectedProducts(clientToken);
+    }
+
+    private void addSelectedProducts(Token token) {
+        if (SavingsAccount.isSelected()) {
+            Services.productCreationService.addProduct(token, ProductType.SAVINGS_ACCOUNT);
+        }
+        if (CurrentAccount.isSelected()) {
+            Services.productCreationService.addProduct(token, ProductType.CHECKING_ACCOUNT);
+        }
+        if (CDT.isSelected()) {
+            Services.productCreationService.addProduct(token, ProductType.CDT);
+        }
+        if (VisaCard.isSelected()) {
+            Services.productCreationService.addProduct(token, ProductType.VISA_CARD);
+        }
+        if (AmericanCard.isSelected()) {
+            Services.productCreationService.addProduct(token, ProductType.AMERICAN_EXPRESS);
+        }
     }
 
     private Gender getSelectedGender() {
@@ -143,10 +176,6 @@ public class ClientWindowController implements Initializable {
     @FXML
     public void handleSaveChangesButtonClicked(ActionEvent event) {
         saveClient();
-    }
-
-    private void addSelectedProducts(Client client) {
-
     }
 
     @FXML
