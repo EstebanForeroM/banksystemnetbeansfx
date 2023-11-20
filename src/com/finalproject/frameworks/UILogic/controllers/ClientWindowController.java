@@ -106,8 +106,6 @@ public class ClientWindowController implements Initializable {
         Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
 
         addSelectedProducts(clientToken);
-
-        //coemnt
     }
 
     private void addSelectedProducts(Token token) {
