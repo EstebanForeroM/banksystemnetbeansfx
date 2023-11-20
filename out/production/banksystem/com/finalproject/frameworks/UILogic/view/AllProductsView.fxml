@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.AllProductsViewController">
+      <children>
+      <AnchorPane fx:id="LeftPanel" prefHeight="106.0" prefWidth="630.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
+         <children>
+            <SplitMenuButton fx:id="Navigation" layoutX="28.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" stylesheets="@initialwindow.css" text="Back" textAlignment="CENTER">
+               <items>
+                  <MenuItem fx:id="ClientsMangement" mnemonicParsing="false" onAction="#handleClientManagementButtonClick" text="ClientsMangement" />
+                  <MenuItem fx:id="ProductsManagement" mnemonicParsing="false" text="ProductsManagement" />
+                  <MenuItem fx:id="Tranferents" mnemonicParsing="false" text="Tranferents" />
+               </items>
+            </SplitMenuButton>
+            <SplitMenuButton fx:id="SearchProductByproduct" layoutX="197.0" layoutY="52.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="Products">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Male" />
+                  <MenuItem mnemonicParsing="false" text="Female" />
+               </items>
+            </SplitMenuButton>
+            <TextField fx:id="SearchForID" layoutX="450.0" layoutY="56.0" prefHeight="25.0" prefWidth="127.0" />
+            <Text layoutX="375.0" layoutY="73.0" scaleX="2.0" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Search ID" wrappingWidth="65.0" />
+            <SplitMenuButton fx:id="SearchProductByIDclient" layoutX="46.0" layoutY="52.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="127.0" text="ID Client">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Savings Account" />
+                  <MenuItem mnemonicParsing="false" text="Current Account" />
+                  <MenuItem mnemonicParsing="false" text="Visa card" />
+                  <MenuItem mnemonicParsing="false" text="American Card" />
+                  <MenuItem mnemonicParsing="false" text="CDT" />
+               </items>
+            </SplitMenuButton>
+         </children>
+      </AnchorPane>
+      <ScrollPane layoutX="14.0" layoutY="114.0" prefHeight="286.0" prefWidth="610.0">
+         <content>
+            <TableView prefHeight="333.0" prefWidth="611.0">
+               <columns>
+                  <TableColumn fx:id="ColumIDproduct" prefWidth="129.0" text="ID Product" />
+                  <TableColumn fx:id="ColumIDclient" prefWidth="137.0" text="ID Client" />
+                  <TableColumn fx:id="TypeOfProduct" prefWidth="145.0" text="Product" />
+                  <TableColumn fx:id="opening" prefWidth="106.0" text="Opening" />
+                  <TableColumn fx:id="ColumAvailable" prefWidth="93.0" text="Available" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

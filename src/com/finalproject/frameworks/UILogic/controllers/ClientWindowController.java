@@ -14,10 +14,7 @@ import com.finalproject.useCases.Token;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +25,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
-import javafx.scene.control.CheckBox;
 
 import javax.swing.*;
 
@@ -48,7 +44,7 @@ public class ClientWindowController implements Initializable {
     @FXML
     private TextField clueTextField;
     @FXML
-    private MenuButton genderMenuButton;
+    private ChoiceBox<String> gender;
     @FXML
     private ImageView userImageView;
     @FXML
@@ -88,10 +84,13 @@ public class ClientWindowController implements Initializable {
     @FXML
     private CheckBox AmericanCard;
 
+    private String[] genders;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Gender[] genders = Gender.values();
+        genders = Gender.values();
     }
-
 
 
     private void saveClient() {
@@ -108,6 +107,10 @@ public class ClientWindowController implements Initializable {
         addSelectedProducts(clientToken);
     }
 
+    @FXML
+    private void handleaddNewClientButtonClicked(ActionEvent event) {
+        saveClient();
+    }
     private void addSelectedProducts(Token token) {
         if (SavingsAccount.isSelected()) {
             Services.productCreationService.addProduct(token, ProductType.SAVINGS_ACCOUNT);
