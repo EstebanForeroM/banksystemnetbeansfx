@@ -89,14 +89,22 @@ public class ClientWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Gender[] genders = Gender.values();
-        genders = Gender.values();
+
+        String[] genderNames = new String[genders.length];
+
+
+        for (int i = 0; i < genderNames.length; i ++) {
+            genderNames[i] = genders[i].getGenderName();
+        }
+
+        gender.getItems().addAll(genderNames);
     }
 
 
     private void saveClient() {
         String clientName = nameTextField.getText();
         String clientId= clientIDTextField.getText();
-        Gender clientGender = Gender.getGenderFromGenderName(genderMenuButton.getText());
+        Gender clientGender = Gender.getGenderFromGenderName(gender.getValue());
         String clientPassword = PasswordTextField.getText();
 
         Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId);
@@ -130,14 +138,12 @@ public class ClientWindowController implements Initializable {
     }
 
     private Gender getSelectedGender() {
-        String selectedGenderName = genderMenuButton.getText();
-        return Gender.getGenderFromGenderName(selectedGenderName);
+        
     }
 
     @FXML
     public void handleGenderMenuItemClicked(javafx.event.ActionEvent event) {
-        MenuItem selectedMenuItem = (MenuItem) event.getSource();
-        genderMenuButton.setText(selectedMenuItem.getText());
+
     }
 
         
