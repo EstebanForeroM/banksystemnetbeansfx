@@ -11,13 +11,11 @@ public class UserCreationService {
     private UserRepository clientRepository;
     private PasswordManager passwordManager;
     Set<String> ids;
-    Set<String> passwords;
 
     public UserCreationService(UserRepository clientRepository, PasswordManager passwordManager) {
         this.clientRepository = clientRepository;
         this.passwordManager = passwordManager;
         ids = new HashSet<String>();
-        passwords = new HashSet<String>();
     }
 
     /*
@@ -26,11 +24,11 @@ public class UserCreationService {
     public void createClient(String name, String password, Gender gender, String clientId, String fileImagePath) {
         validateParametersNotNull(clientId, name, gender, password, fileImagePath);
         comproveId(clientId);
-        ids.add(clientId);
         passwordManager.validatePassword(password);
         Client client = new Client(clientId, name, gender, password);
         client.setPhotoPath(fileImagePath);
         clientRepository.saveClient(client);
+        ids.add(clientId);
     }
 
     private void validateParametersNotNull(Object... parameters) {
