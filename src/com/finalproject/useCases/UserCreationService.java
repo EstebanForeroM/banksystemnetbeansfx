@@ -1,6 +1,7 @@
 package com.finalproject.useCases;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import com.finalproject.entities.Client;
@@ -24,29 +25,43 @@ public class UserCreationService {
     /*
      * @return id of the created client
      */
-    public void createClient(String name, String password, Gender gender, String clientId) {
-
-        comproveId(clientId);
+    public String createClient(String name, String password, Gender gender) {
 
         passwordManager.validatePassword(password);
 
-        Client client = new Client(clientId, name, gender, password);
+        String id = generateId();
+
+        Client client = new Client(id, name, gender, password);
 
         clientRepository.saveClient(client);
+
+        return id;
     }
 
-    public String createClientWithImage(String name, String password, Gender gender, String fileImagePath,
-            String clientId) {
-        createClient(name, password, gender, clientId);
+    public String createClientWithImage(String name, String password, Gender gender, String fileImagePath) {
+        String clientId = createClient(name, password, gender);
         Client client = clientRepository.getClient(clientId);
         client.setPhotoPath(fileImagePath);
         clientRepository.updateClient(clientId, client);
         return clientId;
     }
 
-    private void comproveId(String clientId) {
-        if (ids.contains(clientId)) {
-            throw new RuntimeException("Id already exists");
+    private String generateId() {
+        String id = generateRandomId();
+        while (ids.contains(id)) {
+            id = generateRandomId();
         }
+        return id;
+    }
+
+    private String generateRandomId() {
+        StringBuilder id = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < 10; i++) {
+            id.append(random.nextInt(10));
+        }
+
+        return id.toString();
     }
 }
