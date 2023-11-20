@@ -20,7 +20,7 @@
                   <AnchorPane fx:id="LeftPanel" prefHeight="450.0" prefWidth="197.0" styleClass="LeftPanel" stylesheets="@initialwindow.css">
                      <children>
                         <ImageView fx:id="ImagenUser" fitHeight="209.0" fitWidth="162.0" layoutX="17.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="returnWindow" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Return" />
+                        <Button fx:id="returnWindow" layoutX="14.0" layoutY="14.0" onAction="#handlereturnWindow" mnemonicParsing="false" text="Return" />
                      </children>
                   </AnchorPane>
                </children>
@@ -29,22 +29,22 @@
                <children>
                   <ScrollPane prefHeight="225.0" prefWidth="480.0">
                      <content>
-                        <TableView fx:id="TableClient" prefHeight="238.0" prefWidth="541.0" stylesheets="@initialwindow.css">
+                        <TableView fx:id="tableClient" prefHeight="238.0" prefWidth="541.0" stylesheets="@initialwindow.css">
                           <columns>
-                            <TableColumn fx:id="ColumID" onEditStart="#initialize" prefWidth="147.0" text="ID" />
-                            <TableColumn fx:id="ColumName" onEditStart="#initialize" prefWidth="238.0" text="Name" />
-                              <TableColumn fx:id="ColumGender" onEditStart="#initialize" prefWidth="116.0" text="Gender" />
+                            <TableColumn fx:id="columnID" prefWidth="147.0" text="ID" />
+                            <TableColumn fx:id="columnName" prefWidth="238.0" text="Name" />
+                              <TableColumn fx:id="columnGender" prefWidth="116.0" text="Gender" />
                           </columns>
                         </TableView>
                      </content>
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <TextField fx:id="SearchForName" layoutX="226.0" layoutY="286.0" onAction="#handleSearchForName" prefHeight="25.0" prefWidth="173.0" />
+            <TextField fx:id="searchForName" layoutX="226.0" layoutY="286.0" onAction="#handleSearchForName" prefHeight="25.0" prefWidth="173.0" />
             <Text layoutX="248.0" layoutY="277.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for name" />
             <Text layoutX="237.0" layoutY="349.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" wrappingWidth="43.705078125" />
-            <ChoiceBox fx:id="searchByProduct" layoutX="226.0" layoutY="357.0" prefHeight="25.0" prefWidth="162.0" />
-            <ChoiceBox fx:id="searchByGender" layoutX="456.0" layoutY="286.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="searchForProduct" layoutX="226.0" layoutY="357.0" prefHeight="25.0" prefWidth="162.0" />
+            <ChoiceBox fx:id="searchForGender" layoutX="456.0" layoutY="286.0" prefWidth="150.0" />
             <Text layoutX="467.0" layoutY="277.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" wrappingWidth="42.47005271911621" />
          </children>
       </AnchorPane>

@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -31,13 +32,11 @@ public class AllClientsViewController {
     @FXML
     private MenuItem Transferents;
     @FXML
-    private SplitMenuButton searchForProducts;
+    private Button returnWindow;
     @FXML
     private TextField searchForName;
     @FXML
     private TableView<Client> tableClient;
-    @FXML
-    private TableView<Product> tableProduct;
     @FXML
     private TableColumn<Client, String> columnID;
     @FXML
@@ -58,11 +57,12 @@ public class AllClientsViewController {
     @FXML
     public void initialize() {
         // Set up the table columns
-        columnID.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
-        columnName.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getName()));
-        columnGender.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getGenderName()));
+        columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
         // Populate the table with data
+        clients.addAll(Services.userSearcher.getClients());
         tableClient.setItems(clients);
         Gender[] genders = Gender.values();
         String[] genderNames = new String[genders.length];
@@ -110,7 +110,7 @@ public class AllClientsViewController {
             Set<Product> productsByType = Services.productSearcher.getProductsByType(ProductType.getProductType(selectedProductType));
             ObservableList<Product> filteredProducts = FXCollections.observableArrayList(productsByType);
             // Table refresh
-            tableProduct.setItems(filteredProducts);
+            //tableProduct.setItems(filteredProducts);
         } else {
             JOptionPane.showMessageDialog(
                     null,
@@ -130,5 +130,11 @@ public class AllClientsViewController {
         ObservableList<Client> filteredClients = FXCollections.observableArrayList(clientsByName);
         //table refresh
         tableClient.setItems(filteredClients);
+    }
+    @FXML
+    private void handlereturnWindow(ActionEvent event) throws IOException {
+        String fxml = "initialWindow";
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
 }
