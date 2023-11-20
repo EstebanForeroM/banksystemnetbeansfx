@@ -167,6 +167,7 @@ public class ClientWindowController implements Initializable {
             JOptionPane.showMessageDialog(null, "Client created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }

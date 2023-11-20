@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 Uninitialized product,6129859980,54848648465,2023-11-20 09:52:40,0.0,Savings account
+=======
+Uninitialized product,0029299421,521545,2023-11-20 10:46:42,0.0,Savings account
+>>>>>>> Stashed changes
