@@ -21,6 +21,7 @@ public class ProductSerializer implements Serializer<Product> {
 
         sb.append(serializeGeneralProduct(product));
 
+
         if (product instanceof UninitializedProduct) {
             UninitializedProduct uninitializedProduct = (UninitializedProduct) product;
 
@@ -36,30 +37,38 @@ public class ProductSerializer implements Serializer<Product> {
 
     public Product deserialize(String productString) {
         String[] productData = productString.split(",");
+        Product product = null;
+
         if (productString.startsWith(ProductType.UninitializedProduct.getName())) {
-            return new UninitializedProduct(productData[1], productData[2], ProductType.getProductType(productData[4]));
+            product = new UninitializedProduct(productData[1], productData[2], ProductType.getProductType(productData[5]));
         } else if (productString.startsWith(ProductType.CDT.getName())) {
-            return new CDT(productData[1], productData[2], getDateFromString(productData[3]),
-                    Integer.parseInt(productData[4]));
+            product = new CDT(productData[1], productData[2], getDateFromString(productData[3]), Integer.parseInt(productData[5]));
         } else if (productString.startsWith(ProductType.VISA_CARD.getName())) {
-            return getCardFromString(productData, CardType.VISA);
+            product = getCardFromString(productData, CardType.VISA);
         } else if (productString.startsWith(ProductType.MASTERCARD.getName())) {
-            return getCardFromString(productData, CardType.MASTERCARD);
-        }else if (productString.startsWith(ProductType.AMERICAN_EXPRESS.getName())) {
-            return getCardFromString(productData, CardType.AMERICAN_EXPRESS);
+            product = getCardFromString(productData, CardType.MASTERCARD);
+        } else if (productString.startsWith(ProductType.AMERICAN_EXPRESS.getName())) {
+            product = getCardFromString(productData, CardType.AMERICAN_EXPRESS);
         } else if (productString.startsWith(ProductType.CHECKING_ACCOUNT.getName())) {
-            return getAccountFromString(productData, AccountType.CHECKING);
+            product = getAccountFromString(productData, AccountType.CHECKING);
         } else if (productString.startsWith(ProductType.SAVINGS_ACCOUNT.getName())) {
-            return getAccountFromString(productData, AccountType.SAVINGS);
+            product = getAccountFromString(productData, AccountType.SAVINGS);
         } else {
             throw new IllegalArgumentException("Invalid product type");
         }
+
+        if (product != null) {
+            product.setBalance(Integer.parseInt(productData[4]));
+        }
+
+        return product;
     }
+
 
     private String serializeGeneralProduct(Product product) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String openingDate = formatter.format(product.getOpeningDate());
-        return product.getProductName() + "," + product.getId() + "," + product.getOwnerId() + "," + openingDate;
+        return product.getProductName() + "," + product.getId() + "," + product.getOwnerId() + "," + openingDate + "," + product.getBalance();
     }
 
     private Date getDateFromString(String openingDate) {
