@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Set;
 
 public class AllClientsViewController {
@@ -75,11 +76,13 @@ public class AllClientsViewController {
             productTypeNames[i] = productTypes[i].getName();
         }
         searchByProduct.getItems().addAll(productTypeNames);
+
     }
     // Event handlers
 
     @FXML
-    private void handleSearchForGender(ActionEvent event) {
+    private void searchByGender(ActionEvent event) {
+        System.out.println("Me estoy ejecutando");
         // Search item selected
         String selectedGender = searchByGender.getValue();
         // Filtered table
@@ -90,7 +93,7 @@ public class AllClientsViewController {
     }
 
     @FXML
-    private void handleSearchForProduct(ActionEvent event) {
+    private void handlesearcByProduct(ActionEvent event) {
         // Get the selected product type
         String selectedProductType = searchByProduct.getValue();
 

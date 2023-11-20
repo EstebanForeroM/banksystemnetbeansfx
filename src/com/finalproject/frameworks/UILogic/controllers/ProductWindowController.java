@@ -16,13 +16,6 @@ import java.util.Set;
 
 public class ProductWindowController {
 
-    @FXML
-    private MenuItem clientsManagement;
-    @FXML
-    private MenuItem productsManagement;
-    @FXML
-    private MenuItem tranferents;
-    @FXML
     private TextField SearcheForID;
     @FXML
     private Button seeAllButton;
@@ -43,17 +36,19 @@ public class ProductWindowController {
     @FXML
     private Button eliminateButton;
     @FXML
-    private MenuItem ProductsOfClient;
+    private ChoiceBox<String> productsOfClient;
     @FXML
-    private ChoiceBox<String> searchForGender;
+    private TextField saldo;
     @FXML
-    private ChoiceBox<String> searchForProduct;
-
-    private String[] SearchForGender = {"Masculino", "Femenino"};
-    private String[] SearchForProduct;
+    private TextField balance;
+    @FXML
+    private TextField NumProduct;
+    @FXML
+    private TextField termmonths;
+    @FXML
+    private TextField searchById;
     private String idClient = null;
 
-    // Event handling method for "ClientsMangement" menu item click
 
     @FXML
     public void initialize() {
@@ -111,14 +106,6 @@ public class ProductWindowController {
     @FXML
     private void handleProductMenuItemClick(Product product) {
         //Cases for type of product
-        switch (product.getProductName()) {
-            case "Type1":
-                // Acciones para el tipo 1
-                break;
-            case "Type2":
-                // Acciones para el tipo 2
-                break;
-        }
     }
 
         // Event handling method for "Create" button click
