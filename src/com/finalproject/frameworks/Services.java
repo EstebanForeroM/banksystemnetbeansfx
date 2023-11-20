@@ -26,7 +26,6 @@ public class Services {
     static private ProductRepository productRepository;
     static private PasswordManager passwordManager;
     static private DeletionController deletionController;
-
     public static TokenAuthenticationService tokenAuthenticationService;
     public static UserSearcher userSearcher;
     public static UserCreationService userCreationService;

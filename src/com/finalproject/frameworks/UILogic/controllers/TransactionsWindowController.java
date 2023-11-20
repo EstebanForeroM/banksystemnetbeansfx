@@ -56,34 +56,25 @@ public class TransactionsWindowController implements Initializable {
     }
 
     @FXML
+    private void handlehangePassword(ActionEvent event) {
+    }
+    @FXML
+    private void handleBuy(ActionEvent event) {
+    }
+    @FXML
+    private void handledeposit(ActionEvent event) {
+    }
+    @FXML
+    private void handlewithdrawals(ActionEvent event) {
+    }
+    @FXML
+    private void handlebalance(ActionEvent event) {
+    }
+    @FXML
     private void handlechangePassword(ActionEvent event) {
-        try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Shange Password");
-            alert.setHeaderText("Add new password");
-            alert.setHeight(225);
-            alert.setWidth(440);
-            // Crear un campo de texto dentro de la ventana de alerta
-            TextInputDialog inputDialog = new TextInputDialog();
-            inputDialog.setHeaderText("Ingrese un texto:");
-
-            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
-            Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
-
-            okButton.setText("Aceptar");
-            cancelButton.setText("Cancelar");
-
-            inputDialog.showAndWait().ifPresent(texto -> {
-                System.out.println("Texto ingresado: " + texto);
-                Alert resultadoAlerta = new Alert(Alert.AlertType.INFORMATION);
-                resultadoAlerta.setTitle("Resultado");
-                resultadoAlerta.setHeaderText(null);
-                resultadoAlerta.setContentText("Texto ingresado: " + texto);
-                resultadoAlerta.showAndWait();
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    }
+    @FXML
+    private void handlepayments(ActionEvent event) {
     }
 
 
@@ -92,6 +83,30 @@ public class TransactionsWindowController implements Initializable {
         String fxml = "initialWindow";
         Node sourceNode = (Node) event.getSource();
         Navigation.getInstance().navigateToRemplaceScene("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
+    }
+
+    private void ShowMessage(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setHeight(225);
+        alert.setWidth(440);
+        TextInputDialog inputDialog = new TextInputDialog();
+        inputDialog.setHeaderText(content);
+
+        Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+        Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+
+        okButton.setText("Aceptar");
+        cancelButton.setText("Cancelar");
+
+        inputDialog.showAndWait().ifPresent(texto -> {
+            Alert resultadoAlerta = new Alert(Alert.AlertType.INFORMATION);
+            resultadoAlerta.setTitle("Result");
+            resultadoAlerta.setHeaderText(null);
+            resultadoAlerta.setContentText("Texto ingresado: " + texto);
+            resultadoAlerta.showAndWait();
+        });
     }
 }
 
