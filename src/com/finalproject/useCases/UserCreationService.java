@@ -15,6 +15,12 @@ public class UserCreationService {
     public UserCreationService(UserRepository clientRepository, PasswordManager passwordManager) {
         this.clientRepository = clientRepository;
         this.passwordManager = passwordManager;
+        clientRepository.setChangeListener(() -> {
+            ids = new HashSet<String>();
+            for (Client client : clientRepository.getClients()) {
+                ids.add(client.getId());
+            }
+        });
         ids = new HashSet<String>();
     }
 

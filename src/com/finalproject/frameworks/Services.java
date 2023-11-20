@@ -1,5 +1,6 @@
 package com.finalproject.frameworks;
 
+import com.finalproject.controllers.DeletionController;
 import com.finalproject.useCases.UserRepository;
 import com.finalproject.useCases.UserSearcher;
 
@@ -24,6 +25,7 @@ public class Services {
     static private UserRepository clientRepository;
     static private ProductRepository productRepository;
     static private PasswordManager passwordManager;
+    static private DeletionController deletionController;
 
     public static TokenAuthenticationService tokenAuthenticationService;
     public static UserSearcher userSearcher;
@@ -48,6 +50,8 @@ public class Services {
         productCreationService = new ProductCreationService(productRepository, tokenAuthenticationService,
                 productSearcher);
         transactionService = new TransactionService(productRepository, tokenAuthenticationService);
+        deletionController = new DeletionController(userModificationService, productSearcher,
+                productModificationService);
     }
 
     public static void addOnClientAddedListener(Runnable listener) {

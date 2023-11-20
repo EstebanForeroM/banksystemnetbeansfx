@@ -30,4 +30,8 @@ public class ProductModificationService {
         cdt.setExpirationMonths(timePeriod);
         productRepository.updateProduct(id, cdt);
     }
+
+    public void deleteProduct(String id) {
+        productRepository.deleteProduct(id);
+    }
 }

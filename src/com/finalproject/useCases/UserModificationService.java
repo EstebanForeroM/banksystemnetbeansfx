@@ -3,11 +3,15 @@ package com.finalproject.useCases;
 import com.finalproject.entities.Client;
 import com.finalproject.entities.Gender;
 
+import java.util.function.Consumer;
+
 public class UserModificationService {
 
     private TokenAuthenticationService tokenAuthenticationService;
     private UserRepository clientRepository;
     private PasswordManager passwordManager;
+
+    private Consumer<String> onUserDeleted;
 
     public UserModificationService(TokenAuthenticationService tokenAuthenticationService,
             UserRepository clientRepository,
@@ -16,6 +20,10 @@ public class UserModificationService {
         this.tokenAuthenticationService = tokenAuthenticationService;
         this.clientRepository = clientRepository;
         this.passwordManager = passwordManager;
+    }
+
+    public void setOnUserDeleted(Consumer<String> onUserDeleted) {
+        this.onUserDeleted = onUserDeleted;
     }
 
     public void modifyUserName(Token token, String name) {
@@ -53,6 +61,13 @@ public class UserModificationService {
         if (gender != null)
             client.setGender(gender);
         clientRepository.updateClient(token.getClientId(), client);
+    }
+
+    public void deleteUser(Token token) {
+        validateToken(token);
+        clientRepository.deleteClient(token.getClientId());
+        if (onUserDeleted != null)
+            onUserDeleted.accept(token.getClientId());
     }
 
     private void validateToken(Token token) {

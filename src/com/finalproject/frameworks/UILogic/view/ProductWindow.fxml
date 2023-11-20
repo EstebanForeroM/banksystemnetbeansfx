@@ -20,7 +20,7 @@
                 <Button fx:id="seeAllButton" layoutX="21.0" layoutY="294.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="176.0" text="See All" />
                 <ChoiceBox fx:id="productsOfClientChoiceBox" layoutX="22.0" layoutY="235.0" onAction="#ProductSelected" prefWidth="150.0" />
                 <Text fill="WHITE" layoutX="43.0" layoutY="227.0" scaleX="1.5" scaleY="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Of Client" wrappingWidth="108.0" />
-                <Button fx:id="returnWindowButton" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" text="Return" />
+                <Button fx:id="returnWindowButton" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" text="Return" onAction="#handlereturnWindow" />
                 <Button layoutX="22.0" layoutY="159.0" mnemonicParsing="false" onAction="#searchForOwnerId" text="Search" />
             </children>
         </AnchorPane>

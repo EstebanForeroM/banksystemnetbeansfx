@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -273,5 +274,12 @@ public class ProductWindowController implements Initializable {
         if (selectedProduct instanceof CDT) {
             Services.productModificationService.modifyCDTTimePeriod(selectedProduct.getId(), Integer.parseInt(termMonthsTextField.getText()));
         }
+    }
+
+    @FXML
+    private void handlereturnWindow(ActionEvent event) throws IOException {
+        String fxml = "initialWindow";
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateToRemplaceScene("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
 }

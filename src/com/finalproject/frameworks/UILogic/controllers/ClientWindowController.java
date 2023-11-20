@@ -62,7 +62,7 @@ public class ClientWindowController implements Initializable {
     @FXML
     private Button Clean;
     @FXML
-    private Button Modify;
+    private Button modifyClient;
     @FXML
     private Button SearchPicture;
     @FXML
@@ -115,26 +115,32 @@ public class ClientWindowController implements Initializable {
         gender.getItems().addAll(genderNames);
 
         clientListChanges();
-        Modify.setDisable(true);
     }
 
     private void clientListChanges() {
         actualClients = Services.userSearcher.getClients();
     }
 
-
+    @FXML
     private void saveClient() {
         String clientName = nameTextField.getText();
         String clientId= clientIDTextField.getText();
         Gender clientGender = Gender.getGenderFromGenderName(gender.getValue());
         String clientPassword = passwordTextField.getText();
 
+        if (!Services.userSearcher.userExists(clientId)) {
+            JOptionPane.showMessageDialog(null, "The client don't exists, you must create one client first", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
-            Client client = Services.userSearcher.getClientById(clientId);
 
             Token clientToken = Services.tokenAuthenticationService.getToken(clientPassword);
 
-            Services.userModificationService.modifyUser(clientToken, clientName, client.getPassword(), clientGender, imagePath);
+            Services.userModificationService.modifyUserName(clientToken, clientName);
+            Services.userModificationService.modifyUserGender(clientToken, clientGender);
+            Services.userModificationService.modifyUserPhoto(clientToken, imagePath);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException(e);
@@ -148,6 +154,11 @@ public class ClientWindowController implements Initializable {
         String clientId= clientIDTextField.getText();
         Gender clientGender = Gender.getGenderFromGenderName(gender.getValue());
         String clientPassword = passwordTextField.getText();
+
+        if (Services.userSearcher.userExists(clientId)) {
+            JOptionPane.showMessageDialog(null, "This client already exists", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         try {
             Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId, imagePath);
@@ -302,6 +313,18 @@ public class ClientWindowController implements Initializable {
         clientIDTextField.setText(client.getId());
         nameTextField.setText(client.getName());
         passwordTextField.setText("");
+    }
+
+    @FXML
+    private void deleteUser() {
+        try {
+            String password = passwordTextField.getText();
+            Token token = Services.tokenAuthenticationService.getToken(password);
+            Services.userModificationService.deleteUser(token);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException(e);
+        }
     }
 
     private void loadImage(String imagePath) {
