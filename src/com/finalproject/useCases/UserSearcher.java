@@ -99,7 +99,7 @@ public class UserSearcher {
         Set<Client> clientsByGender = new HashSet<>();
 
         for (Client client : clients) {
-            if (client.getGender() == gender)
+            if (client.getGender().equals(gender))
                 clientsByGender.add(cloneClient(client));
         }
 
