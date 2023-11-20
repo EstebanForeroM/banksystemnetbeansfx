@@ -14,14 +14,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.security.Provider;
 import java.util.HashSet;
 import java.util.Set;
 
 public class AllClientsViewController {
 
-    @FXML
-    private SplitMenuButton searchForGender;
     @FXML
     private SplitMenuButton Back;
     @FXML
@@ -44,6 +44,13 @@ public class AllClientsViewController {
     private TableColumn<Client, String> columnName;
     @FXML
     private TableColumn<Gender, String> columnGender;
+    @FXML
+    private ChoiceBox<String> searchForGender;
+    @FXML
+    private ChoiceBox<String> searchForProduct;
+
+    private String[] SearchForGender;
+    private String[] SearchForProduct;
 
     private ObservableList<Client> clients = FXCollections.observableArrayList();
 
@@ -57,38 +64,62 @@ public class AllClientsViewController {
 
         // Populate the table with data
         tableClient.setItems(clients);
-    }
+        Gender[] genders = Gender.values();
+        String[] genderNames = new String[genders.length];
 
+        for (int i = 0; i < genderNames.length; i++) {
+            genderNames[i] = genders[i].getGenderName();
+        }
+        searchForGender.getItems().addAll(genderNames);
+
+        ProductType[] productTypes = ProductType.values();
+        String[] productTypeNames = new String[productTypes.length];
+
+        for (int i = 0; i < productTypeNames.length; i++) {
+            productTypeNames[i] = productTypes[i].getName();
+        }
+        searchForProduct.getItems().addAll(productTypeNames);
+    }
     // Event handlers
+
     @FXML
     private void handleSearchForGender(ActionEvent event) {
-        //Search item selected
-        MenuItem selectedMenuItem = (MenuItem) event.getSource();
-        String selectedGender = selectedMenuItem.getText().toLowerCase();
-        //filtered table
-        Set<Client> clientsByGender = Services.userSearcher.getClientsByGender(Gender.getGenderFromGenderName(selectedGender));
-        ObservableList<Client> filteredClients = FXCollections.observableArrayList(clientsByGender);
-        //table refresh
-        tableClient.setItems(filteredClients);
+        // Search item selected
+        String selectedGender = searchForGender.getValue();
+
+        if (selectedGender != null && !selectedGender.isEmpty()) {
+            // Filtered table
+            Set<Client> clientsByGender = Services.userSearcher.getClientsByGender(Gender.getGenderFromGenderName(selectedGender));
+            ObservableList<Client> filteredClients = FXCollections.observableArrayList(clientsByGender);
+
+            tableClient.setItems(filteredClients);
+        } else {
+            // Table refresh
+            ObservableList<Client> filteredClients = FXCollections.observableArrayList(Services.userSearcher.getClientsByGender(Gender.getGenderFromGenderName(selectedGender)));
+            tableClient.setItems(filteredClients);
+        }
     }
 
     @FXML
-    private void handleSearcherForProducts(ActionEvent event) {
-        // Search item selected
-        ProductType selectedProductType = ProductType.getProductType(((MenuItem) event.getSource()).getText());
-        // Have the ProductSearcher find all products of the selected type
-        Set<Product> productsOfType = Services.productSearcher.getProductsByType(selectedProductType);
-        // Have the UserSearcher find all clients that own the products
-        Set<Client> clientsByProduct = new HashSet<>();
-        for (Product product : productsOfType) {
-            Client client = Services.userSearcher.getClientByProduct(product);
-            clientsByProduct.add(client);
-        }
-        ObservableList<Client> filteredClients = FXCollections.observableArrayList(clientsByProduct);
-        //table refresh
-        tableClient.setItems(filteredClients);
-    }
+    private void handleSearchForProduct(ActionEvent event) {
+        // Get the selected product type
+        String selectedProductType = searchForProduct.getValue();
 
+        if (selectedProductType != null && !selectedProductType.isEmpty()) {
+            // Filtered table
+            Set<Product> productsByType = Services.productSearcher.getProductsByType(ProductType.getProductType(selectedProductType));
+            ObservableList<Product> filteredProducts = FXCollections.observableArrayList(productsByType);
+            // Table refresh
+            tableProduct.setItems(filteredProducts);
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error! PRODUCT NOT FOUND.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 
     @FXML
     private void handleSearchForName(ActionEvent event) {
@@ -100,26 +131,4 @@ public class AllClientsViewController {
         //table refresh
         tableClient.setItems(filteredClients);
     }
-
-    @FXML
-    public void handleBack(ActionEvent event) {
-        // Search item selected
-        MenuItem selectedMenuItem = (MenuItem) event.getSource();
-        String selectedMenu = selectedMenuItem.getText().toLowerCase();
-        // Switch scene based on the selected menu
-        if (selectedMenu.equals("Initial Window")) {
-            String fxml = "ClientWindow";
-            Node sourceNode = (Node) event.getSource();
-            Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
-        } else if (selectedMenu.equals("products management")) {
-            String fxml = "ProductWindow";
-            Node sourceNode = (Node) event.getSource();
-            Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
-        } else if (selectedMenu.equals("transferents")) {
-            String fxml = "PasswordWindow";
-            Node sourceNode = (Node) event.getSource();
-            Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/"+ fxml +".fxml", sourceNode);
-        }
-    }
-
 }
