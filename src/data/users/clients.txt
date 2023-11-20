@@ -1,2 +1,3 @@
 juan esteban,456456,Other,password,@../../../../../img/defaultProfile.png
+PepitoPe,4455446464,Other,pakdpa54554,C:/Users/maste/OneDrive/Imágenes/i.jpg
 Esteban Forero,2352675685,Male,estebanpassword,C:/Users/esteb/Downloads/rigthArrow.png

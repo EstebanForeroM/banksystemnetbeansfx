@@ -39,7 +39,7 @@ public class ProductSerializer implements Serializer<Product> {
         String[] productData = productString.split(",");
         Product product = null;
 
-        if (productData.length < 6) {
+        if (productData.length <= 6) {
             System.err.println("Error: Insuficientes elementos en el array productData.");
             return null;
         } else if (productString.startsWith(ProductType.CDT.getName())) {

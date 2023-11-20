@@ -6,13 +6,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.TransactionsWindowController">
    <children>
-      <Button fx:id="changePassword" layoutX="88.0" layoutY="118.0" mnemonicParsing="false" onAction="#handlechangePassword" prefHeight="101.0" prefWidth="132.0" text="CHANGE PASSWORD" />
-      <Button fx:id="buy" layoutX="234.0" layoutY="118.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" text="BUY" />
-      <Button layoutX="380.0" layoutY="118.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" text="DEPOSIT" />
-      <Button fx:id="payments" layoutX="160.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" text="PAYMENTS" />
-      <Button layoutX="14.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" text="WITHDRAWALS" />
-      <Button fx:id="balance" layoutX="300.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" text="BALANCE" />
-      <Button fx:id="advance" layoutX="446.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" text="ADVANCE" />
+      <Button fx:id="changePassword" layoutX="88.0" layoutY="118.0" mnemonicParsing="false" onAction="#handlechangePassword" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="CHANGE PASSWORD" />
+      <Button fx:id="buy" layoutX="234.0" layoutY="118.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="BUY" />
+      <Button layoutX="380.0" layoutY="118.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="DEPOSIT" />
+      <Button fx:id="payments" layoutX="160.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="PAYMENTS" />
+      <Button layoutX="14.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="WITHDRAWALS" />
+      <Button fx:id="balance" layoutX="300.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="BALANCE" />
+      <Button fx:id="advance" layoutX="446.0" layoutY="237.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="132.0" styleClass="ButtonTransferens" stylesheets="@initialwindow.css" text="ADVANCE" />
       <ChoiceBox fx:id="productClient" layoutX="162.0" layoutY="63.0" prefHeight="25.0" prefWidth="258.0" />
       <Button fx:id="returnWindow" layoutX="20.0" layoutY="361.0" mnemonicParsing="false" onAction="#handlereturnWindow" text="Return" />
    </children>

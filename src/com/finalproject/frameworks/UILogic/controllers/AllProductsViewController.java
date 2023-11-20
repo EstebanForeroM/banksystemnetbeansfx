@@ -1,84 +1,92 @@
 package com.finalproject.frameworks.UILogic.controllers;
 
-import com.finalproject.entities.Client;
 import com.finalproject.entities.Product;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javafx.beans.property.ReadOnlyObjectWrapper;
+import com.finalproject.entities.products.ProductType;
+import com.finalproject.frameworks.Services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AllProductsViewController {
 
     @FXML
-    private SplitMenuButton navigation;
+    private TableView<Product> tableProduct;
     @FXML
-    private MenuItem clientsManagement;
+    private TableColumn<Product, String> ColumIDproduct;
     @FXML
-    private MenuItem productsManagement;
+    private TableColumn<Product, String> ColumIDclient;
     @FXML
-    private MenuItem tranferents;
-    @FXML
-    private TextField searchForID;
-    @FXML
-    private TableView<Product> productsTableView;
-    @FXML
-    private TableColumn<Product, String> columIDproduct;
-    @FXML
-    private TableColumn<Client, String> columIDclient;
-    @FXML
-    private TableColumn<Product, String> typeOfProduct;
+    private TableColumn<Product, String> TypeOfProduct;
     @FXML
     private TableColumn<Product, String> opening;
     @FXML
-    private TableColumn<Product, String> columAvailable;
+    private TableColumn<Product, Boolean> ColumAvailable;
     @FXML
-    private TableView<Product> productsTableViews;
-    private ObservableList<Product> productsData = FXCollections.observableArrayList();
+    private ChoiceBox<String> SearchByProducts;
+    @FXML
+    private ChoiceBox<String> searchByIDclients;
+    @FXML
+    private TextField SearchForID;
 
-    // Additional fields and methods as needed
+    private ObservableList<Product> products = FXCollections.observableArrayList();
+
     @FXML
-        public void initialize() {
-            // Initialize your controller here. This method is called after the FXML file has been loaded.
-            // You can set up the table columns and add sample data if needed
-            columIDproduct.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getOwnerId()));
-            columIDclient.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
-            typeOfProduct.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getProductName()));
-            opening.setCellValueFactory(cellData -> {
-                Date openingDate = cellData.getValue().getOpeningDate();
-                    String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(openingDate);
-                    return new ReadOnlyObjectWrapper<>(formattedDate);
-                });
-            //columAvailable.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAvailable()));
-            // Agregar un getter para saber si el producto esta disponible 
-            
-            productsTableViews.setItems(productsData);
-        }
+    public void initialize() {
+        // Configurar columnas
+        ColumIDproduct.setCellValueFactory(new PropertyValueFactory<>("idProduct"));
+        ColumIDclient.setCellValueFactory(new PropertyValueFactory<>("idClient"));
+        TypeOfProduct.setCellValueFactory(new PropertyValueFactory<>("productType"));
+        opening.setCellValueFactory(new PropertyValueFactory<>("openingDate"));
+        ColumAvailable.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
+
+        // Cargar datos
+        products.addAll(Services.productSearcher.getProductsByType(products));
+        tableProduct.setItems(products);
+
+        List<Product> products = Services.productSearcher.getProductsById();
+
+        List<String> productIDs = products.stream()
+                .map(Product::getId)
+                .collect(Collectors.toList());
+
+        searchByIDclients.setItems(FXCollections.observableArrayList(productIDs));
+
+
+
+        // Configurar ChoiceBoxes
+        // Aquí debes cargar los datos en los ChoiceBoxes, similar a como se hace en AllClientsViewController
+    }
+
     // Event handlers
+
     @FXML
-    private void handleClientManagementButtonClick() {
-        // Handle the Clients Management button click here
+    private void handleSearchByProductType(ActionEvent event) {
+        // Implementar la lógica de búsqueda por tipo de producto
     }
 
     @FXML
-    private void handleProductsManagementButtonClick() {
-        // Handle the Products Management button click here
+    private void handleSearchByIdClient(ActionEvent event) {
+        // Implementar la lógica de búsqueda por ID de cliente
     }
 
     @FXML
-    private void handleTranferentsButtonClick() {
-        // Handle the Tranferents button click here
+    private void handleSearchForId(ActionEvent event) {
+        // Implementar la lógica de búsqueda por ID de producto
     }
 
-    // Additional event handlers for SplitMenuButtons if needed
-    // ...
-
-    // Additional methods for supporting the functionality of the UI
-    // ...
-
-    // You need to define the Product class and the getSampleProducts method
-    // ...
-
+    @FXML
+    private void handleReturnWindow(ActionEvent event) throws IOException {
+        String fxml = "initialWindow";
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateToRemplaceScene("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
+    }
 }
