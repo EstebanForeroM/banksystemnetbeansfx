@@ -1,5 +1,0 @@
-Uninitialized product,4907362030,8789874865,2023-11-20 01:53:11,Savings account
-Uninitialized product,2799512979,8789874865,2023-11-20 01:53:11,Checking account
-Uninitialized product,9111156353,8789874865,2023-11-20 01:53:11,American Express card
-Uninitialized product,8362221234,546445464,2023-11-20 01:51:06,Savings account
-Uninitialized product,0097106746,546445464,2023-11-20 01:51:07,Visa card

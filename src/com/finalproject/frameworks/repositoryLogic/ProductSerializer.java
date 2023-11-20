@@ -45,6 +45,8 @@ public class ProductSerializer implements Serializer<Product> {
             return getCardFromString(productData, CardType.VISA);
         } else if (productString.startsWith(ProductType.MASTERCARD.getName())) {
             return getCardFromString(productData, CardType.MASTERCARD);
+        }else if (productString.startsWith(ProductType.AMERICAN_EXPRESS.getName())) {
+            return getCardFromString(productData, CardType.AMERICAN_EXPRESS);
         } else if (productString.startsWith(ProductType.CHECKING_ACCOUNT.getName())) {
             return getAccountFromString(productData, AccountType.CHECKING);
         } else if (productString.startsWith(ProductType.SAVINGS_ACCOUNT.getName())) {

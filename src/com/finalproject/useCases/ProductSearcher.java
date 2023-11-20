@@ -14,8 +14,8 @@ public class ProductSearcher {
     public ProductSearcher(ProductRepository productRepository) {
         this.productRepository = productRepository;
         productRepository.setChangeListener(this::onRepositoryChange);
-        reloadDTO();
         products = new HashSet<>();
+        reloadDTO();
     }
 
     private void onRepositoryChange() {
@@ -49,6 +49,13 @@ public class ProductSearcher {
     }
 
     public Set<Product> getProductsByUniqueOwner(String ownerId) {
+
+        if (ownerId == null)
+            throw new IllegalArgumentException("Invalid ownerId");
+
+        if (ownerId.isEmpty())
+            throw new IllegalArgumentException("Invalid ownerId");
+
         Set<Product> productsByOwner = new HashSet<>();
 
         for (Product product : products) {

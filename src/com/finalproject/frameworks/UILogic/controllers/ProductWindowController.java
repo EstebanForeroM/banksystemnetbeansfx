@@ -3,20 +3,28 @@ package com.finalproject.frameworks.UILogic.controllers;
 
 import com.finalproject.entities.Client;
 import com.finalproject.entities.Product;
+import com.finalproject.entities.products.CDT;
+import com.finalproject.entities.products.ProductType;
+import com.finalproject.entities.products.UninitializedProduct;
 import com.finalproject.frameworks.Services;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import javax.swing.*;
+import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
+import java.time.ZoneId;
+import java.util.*;
 
-public class ProductWindowController {
+public class ProductWindowController implements Initializable {
 
-    private TextField SearcheForID;
+    @FXML
+    public TextField searchForIDTextField;
+    @FXML
+    private TextField searchForID;
     @FXML
     private Button seeAllButton;
     @FXML
@@ -24,34 +32,30 @@ public class ProductWindowController {
     @FXML
     private TextField numProductTextField;
     @FXML
-    private TextArea productDetailsTextArea1;
-    @FXML
-    private TextField anotherTextField;
-    @FXML
-    private TextArea productDetailsTextArea2;
-    @FXML
     private Button createButton;
     @FXML
     private Button modifyButton;
     @FXML
     private Button eliminateButton;
     @FXML
-    private ChoiceBox<String> productsOfClient;
+    private ChoiceBox<String> productsOfClientChoiceBox;
     @FXML
-    private TextField saldo;
+    private TextField balanceTextField;
     @FXML
-    private TextField balance;
+    private TextField termMonthsTextField;
     @FXML
-    private TextField NumProduct;
+    private TextField saldoTextField;
     @FXML
-    private TextField termmonths;
+    private Label balanceText;
     @FXML
-    private TextField searchById;
-    private String idClient = null;
+    private Label productNameText;
 
-
-    @FXML
-    public void initialize() {
+    private String ownerId;
+    private Product selectedProduct;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        createButton.setDisable(true);
+        numProductTextField.setDisable(true);
     }
 
     @FXML
@@ -71,26 +75,52 @@ public class ProductWindowController {
         }
     }
 
-    // Event handling method for "See All" button click
     @FXML
-    private void handleSeeAllButtonClick(ActionEvent event) {
-        String fxml = "AllProductsView.fxml";
-        Node sourceNode = (Node) event.getSource();
-        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/"+ fxml +".fxml", sourceNode);
-    }
+    public void searchForOwnerId(ActionEvent actionEvent) {
 
-    @FXML
-    private void SearcheForID(ActionEvent event) {
-        String id = SearcheForID.getText();
-        Client clienteEncontrado = Services.userSearcher.getClientById(id);
-        if (clienteEncontrado != null) {
-            // show client details
-            idClient = id;
-        } else {
-            // show message client no found
+        productsOfClientChoiceBox.getItems().clear();
+
+        System.out.println("Searching for owner ID");
+
+        ownerId = searchForIDTextField.getText();
+
+        String id = searchForIDTextField.getText();
+
+        try {
+            Set<Product> productSet = Services.productSearcher.getProductsByUniqueOwner(id);
+
+            if (productSet.isEmpty()) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "This client has no products.",
+                        "Information",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                return;
+            }
+
+            Iterator<Product> products = productSet.iterator();
+
+            String[] productNames = new String[productSet.size()];
+
+            int i = 0;
+
+            while (products.hasNext()) {
+                Product product = products.next();
+                String productName = product.getProductName();
+                if (product instanceof UninitializedProduct) {
+                    productName = ((UninitializedProduct) product).getProductType().getName();
+                }
+                productNames[i] = productName;
+                i++;
+            }
+
+            productsOfClientChoiceBox.getItems().addAll(productNames);
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(
                     null,
-                    "Error! CLIENT NOT FOUND.",
+                    "Error! " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE
             );
@@ -98,36 +128,150 @@ public class ProductWindowController {
     }
 
     @FXML
-    private void ProductsOfClient(ActionEvent event) {
-        Set<Product> productsOfClient =  Services.productSearcher.getProductsById(idClient);
-        // Clean the menu
+    public void ProductSelected(ActionEvent actionEvent) {
+
+        createButton.setDisable(true);
+        modifyButton.setDisable(true);
+
+        String productName = productsOfClientChoiceBox.getValue();
+
+        for (Product product: Services.productSearcher.getProductsByUniqueOwner(ownerId)) {
+            if (product instanceof UninitializedProduct && ((UninitializedProduct) product).getProductType().getName().equals(productName)) {
+                numProductTextField.setText(product.getId());
+                JOptionPane.showMessageDialog(
+                        null,
+                        "This product is not initialized yet.",
+                        "Information",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+                labelConfig(((UninitializedProduct) product).getProductType());
+
+                createButton.setDisable(false);
+
+                selectedProduct = product;
+
+                break;
+            }
+
+            if (product.getProductName().equals(productName)) {
+                numProductTextField.setText(product.getId());
+                modifyButton.setDisable(false);
+                selectedProduct = product;
+                showProductInfo(product);
+                break;
+            }
+        }
+    }
+
+    private void showProductInfo(Product product) {
+        termMonthsTextField.setDisable(true);
+        numProductTextField.setText(product.getId());
+        balanceTextField.setText(String.valueOf(product.getBalance()));
+
+        termMonthsTextField.setDisable(true);
+
+        Date date = product.getOpeningDate();
+
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        openingDateDatePicker.setValue(localDate);
+        numProductTextField.setText(product.getId());
+        balanceTextField.setText(String.valueOf(product.getBalance()));
+
+        if (product instanceof CDT) {
+            termMonthsTextField.setDisable(false);
+            termMonthsTextField.setText(String.valueOf(((CDT) product).getExpirationMonths()));
+        }
+
+        labelConfig(ProductType.getProductType(product.getProductName()));
+    }
+
+
+    public void createProduct(ActionEvent actionEvent) {
+        verifyAllFieldsAreComplete();
+        if (selectedProduct instanceof UninitializedProduct) {
+            UninitializedProduct uninitializedProduct = (UninitializedProduct) selectedProduct;
+            createButton.setDisable(false);
+
+            String productId;
+            LocalDate localDate = openingDateDatePicker.getValue();
+            Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+            switch (uninitializedProduct.getProductType()) {
+                case CDT:
+                    productId = Services.productCreationService.initializeCDT(uninitializedProduct.getId(), date, Integer.parseInt(termMonthsTextField.getText()));
+                    break;
+
+                case AMERICAN_EXPRESS:
+                case MASTERCARD:
+                case VISA_CARD:
+                    productId = Services.productCreationService.initializeCard(uninitializedProduct.getId(), date);
+                    break;
+
+                case CHECKING_ACCOUNT:
+                case SAVINGS_ACCOUNT:
+                    productId =Services.productCreationService.initializeAccount(uninitializedProduct.getId(), date);
+                    break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + uninitializedProduct.getProductType());
+            }
+
+            Services.productModificationService.modifyProductBalance(productId, Double.parseDouble(balanceTextField.getText()));
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Product created successfully.",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+            createButton.setDisable(true);
+        }
+    }
+
+    private void verifyAllFieldsAreComplete() {
+        if (balanceTextField.getText().isEmpty() || openingDateDatePicker.getValue() == null) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error! YOU MUST COMPLETE ALL THE FIELDS.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            throw new RuntimeException("Error! YOU MUST COMPLETE ALL THE FIELDS.");
+        }
+    }
+
+    private void labelConfig(ProductType productType) {
+        productNameText.setText(productType.getName());
+        termMonthsTextField.setDisable(true);
+        switch (productType) {
+            case CDT:
+                termMonthsTextField.setDisable(false);
+                balanceText.setText("Inverted money");
+                break;
+
+            case MASTERCARD:
+            case AMERICAN_EXPRESS:
+            case VISA_CARD:
+                balanceText.setText("Credit available");
+                break;
+
+            case SAVINGS_ACCOUNT:
+                balanceText.setText("Balance");
+        }
     }
 
     @FXML
-    private void handleProductMenuItemClick(Product product) {
-        //Cases for type of product
+    public void modifyProduct(ActionEvent actionEvent) {
+        verifyAllFieldsAreComplete();
+        LocalDate localDate = openingDateDatePicker.getValue();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Services.productModificationService.modifyProductBalance(selectedProduct.getId(), Double.parseDouble(balanceTextField.getText()));
+        Services.productModificationService.modifyProductOpeningDate(selectedProduct.getId(), date);
+        if (selectedProduct instanceof CDT) {
+            Services.productModificationService.modifyCDTTimePeriod(selectedProduct.getId(), Integer.parseInt(termMonthsTextField.getText()));
+        }
     }
-
-        // Event handling method for "Create" button click
-        @FXML
-        private void handleCreateButtonClick(ActionEvent event) {
-
-        }
-
-        // Event handling method for "Modify" button click
-        @FXML
-        private void handleModifyButtonClick(ActionEvent event) {
-            // Your code here
-        }
-
-        // Event handling method for "Eliminate" button click
-        @FXML
-        private void handleEliminateButtonClick(ActionEvent event) {
-            // Your code here
-        }
-
-        // Initialize method, if needed
-
-
-        // Add additional methods for other menu items and actions as necessary
-    }
+}

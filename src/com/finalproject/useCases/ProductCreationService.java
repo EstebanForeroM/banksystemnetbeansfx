@@ -65,7 +65,7 @@ public class ProductCreationService {
         Card card = null;
         for (CardType cardType : CardType.values()) {
             if (uninitializedProduct.getProductType().getName().contains(cardType.getName())) {
-                card = new Card(productId, "1233", date, cardType);
+                card = new Card(productId, uninitializedProduct.getOwnerId(), date, cardType);
             }
         }
 
@@ -97,8 +97,8 @@ public class ProductCreationService {
                 .getProduct(uninitializedProductId);
         Account account = null;
         for (AccountType accountType : AccountType.values()) {
-            if (uninitializedProduct.getProductName().contains(accountType.getName())) {
-                account = new Account(productId, "1233", date, accountType);
+            if (uninitializedProduct.getProductType().getName().contains(accountType.getName())) {
+                account = new Account(productId, uninitializedProduct.getOwnerId(), date, accountType);
             }
         }
 
