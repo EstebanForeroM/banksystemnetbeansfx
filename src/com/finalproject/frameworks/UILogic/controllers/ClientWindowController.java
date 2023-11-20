@@ -62,7 +62,7 @@ public class ClientWindowController implements Initializable {
     @FXML
     private Button Clean;
     @FXML
-    private Button SaveOrModify;
+    private Button Modify;
     @FXML
     private Button SearchPicture;
     @FXML
@@ -115,6 +115,7 @@ public class ClientWindowController implements Initializable {
         gender.getItems().addAll(genderNames);
 
         clientListChanges();
+        Modify.setDisable(true);
     }
 
     private void clientListChanges() {
@@ -327,6 +328,6 @@ public class ClientWindowController implements Initializable {
     private void handlereturnWindow(ActionEvent event) throws IOException {
         String fxml = "initialWindow";
         Node sourceNode = (Node) event.getSource();
-        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
+        Navigation.getInstance().navigateToRemplaceScene("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="205.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.frameworks.UILogic.controllers.TransactionsWindowController">
+   <children>
+      <TextField fx:id="textFieldDialog" layoutX="44.0" layoutY="103.0" prefHeight="33.0" prefWidth="488.0" />
+      <Button fx:id="accept" layoutX="330.0" layoutY="150.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" text="Accept" />
+      <Button fx:id="cancel" layoutX="440.0" layoutY="150.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" text="Cancel" />
+      <TextField fx:id="ressposeDialog" layoutX="44.0" layoutY="56.0" prefHeight="33.0" prefWidth="361.0" />
+   </children>
+</AnchorPane>

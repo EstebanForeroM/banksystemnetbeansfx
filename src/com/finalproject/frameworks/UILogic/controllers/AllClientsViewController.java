@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Set;
 
 public class AllClientsViewController {
@@ -127,6 +126,6 @@ public class AllClientsViewController {
     private void handlereturnWindow(ActionEvent event) throws IOException {
         String fxml = "initialWindow";
         Node sourceNode = (Node) event.getSource();
-        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
+        Navigation.getInstance().navigateToRemplaceScene("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
 }
