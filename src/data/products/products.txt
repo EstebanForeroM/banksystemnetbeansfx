@@ -1,3 +1,2 @@
-Uninitialized product,0318029461,4654644,2023-11-19 20:16:11,CDT
-Uninitialized product,0962741039,423423,2023-11-19 21:55:18,Checking account
-Uninitialized product,8644803402,423423,2023-11-19 21:55:18,Savings account
+Uninitialized product,0452100579,4646645465,2023-11-19 22:07:43,Visa card
+Uninitialized product,7953168004,4646645465,2023-11-19 22:17:16,Savings account

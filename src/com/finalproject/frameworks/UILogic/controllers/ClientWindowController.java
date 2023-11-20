@@ -41,8 +41,6 @@ public class ClientWindowController implements Initializable {
     @FXML
     private TextField nameTextField;
     @FXML
-    private TextField clueTextField;
-    @FXML
     private ChoiceBox<String> gender;
     @FXML
     private ImageView userImageView;
@@ -82,6 +80,12 @@ public class ClientWindowController implements Initializable {
     private CheckBox VisaCard;
     @FXML
     private CheckBox AmericanCard;
+    @FXML
+    private Button returnWindow;
+    @FXML
+    private Button Right;
+    @FXML
+    private Button Left;
 
     private String imagePath;
 
@@ -123,7 +127,6 @@ public class ClientWindowController implements Initializable {
         }
     }
 
-
     @FXML
     private void handleaddNewClientButtonClicked(ActionEvent event) {
 
@@ -134,9 +137,7 @@ public class ClientWindowController implements Initializable {
 
         try {
             Services.userCreationService.createClient(clientName, clientPassword, clientGender, clientId, imagePath);
-
             Token clientToken =  Services.tokenAuthenticationService.getToken(clientPassword);
-
             addSelectedProducts(clientToken);
 
             saveClient();
@@ -155,7 +156,7 @@ public class ClientWindowController implements Initializable {
 
         clientIDTextField.setText("");
         nameTextField.setText("");
-        clueTextField.setText("");
+        passwordTextField.setText("");
     }
 
     private void addSelectedProducts(Token token) {
@@ -185,19 +186,15 @@ public class ClientWindowController implements Initializable {
 
     }
 
-        
-
     @FXML
     public void handleSearchPictureButtonClicked(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-
         Window window = ((Node) event.getSource()).getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(window);
 
         if (selectedFile != null) {
             try {
-                // Set the selected image to the ImageView or any other control you want to display it
                 userImageView.setImage(new Image(selectedFile.toURI().toString()));
 
             } catch (Exception e) {
@@ -233,5 +230,20 @@ public class ClientWindowController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleRightButton(ActionEvent event) throws IOException {
+    }
+
+    @FXML
+    private void handleLeftButton(ActionEvent event) throws IOException {
+    }
+
+    @FXML
+    private void handlereturnWindow(ActionEvent event) throws IOException {
+        String fxml = "initialWindow";
+        Node sourceNode = (Node) event.getSource();
+        Navigation.getInstance().navigateTo("/com/finalproject/frameworks/UILogic/view/" + fxml + ".fxml", sourceNode);
     }
 }
