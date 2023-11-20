@@ -1,2 +1,0 @@
-Uninitialized product,0452100579,4646645465,2023-11-19 22:07:43,Visa card
-Uninitialized product,7953168004,4646645465,2023-11-19 22:17:16,Savings account
