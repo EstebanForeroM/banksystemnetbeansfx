@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="principalPanel" stylesheets="@styleWindows.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bankworksystem.bankworksystem.frameworks.UI.clientWindowController">
+   <children>
+      <VBox prefHeight="500.0" prefWidth="250.0">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="250.0" styleClass="panelClient" stylesheets="@styleWindows.css">
+               <children>
+                  <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="39.0" prefWidth="138.0" styleClass="panelNavigation2" stylesheets="@styleWindows.css">
+                     <children>
+                        <ImageView fx:id="pricipalWindow" fitHeight="30.0" fitWidth="30.0" layoutX="87.0" layoutY="5.0" onMouseClicked="#buttonImgPrincipalWindow" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/return.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="returnWindow" fitHeight="30.0" fitWidth="30.0" layoutX="25.0" layoutY="5.0" onMouseClicked="#buttonImgReturnWindow" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Images/volver.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <ImageView fx:id="clientImage" fitHeight="150.0" fitWidth="169.0" layoutX="40.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" styleClass="circular-image" />
+                  <Button fx:id="editProfile" layoutX="88.0" layoutY="256.0" mnemonicParsing="false" styleClass="generalButtons" text="Edit Profile">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="searchImg" layoutX="30.0" layoutY="320.0" mnemonicParsing="false" onAction="#buttonSearchImg" prefHeight="25.0" prefWidth="192.0" styleClass="generalButtons" text="Search Picture">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="clean" layoutX="30.0" layoutY="360.0" mnemonicParsing="false" onAction="#buttonClean" prefHeight="25.0" prefWidth="192.0" styleClass="generalButtons" text="Clean">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="deleteUser" layoutX="30.0" layoutY="400.0" mnemonicParsing="false" onAction="#buttonDeleteUser" prefHeight="25.0" prefWidth="192.0" styleClass="generalButtons" text="Delete User">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="seeAll" layoutX="30.0" layoutY="440.0" mnemonicParsing="false" onAction="#buttonSeeAll" prefHeight="25.0" prefWidth="192.0" styleClass="generalButtons" text="See All">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Button>
+                  <ImageView fx:id="right" fitHeight="15.0" fitWidth="15.0" layoutX="10.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../resources/Images/Left.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="left" fitHeight="15.0" fitWidth="15.0" layoutX="220.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../resources/Images/Right.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Text fill="#fcfafa" layoutX="375.0" layoutY="30.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Client / Modify Client">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Text>
+      <Label layoutX="300.0" layoutY="75.0" scaleX="1.5" scaleY="1.5" text="Name" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="300.0" layoutY="125.0" scaleX="1.5" scaleY="1.5" text="Client ID" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="300.0" layoutY="175.0" prefHeight="17.0" prefWidth="56.0" scaleX="1.5" scaleY="1.5" text="Password" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="300.0" layoutY="225.0" scaleX="1.5" scaleY="1.5" text="Gender" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <TextField fx:id="nameUser" layoutX="370.0" layoutY="70.0" prefHeight="25.0" prefWidth="300.0" styleClass="text_input" />
+      <TextField fx:id="clientID" layoutX="370.0" layoutY="120.0" prefHeight="25.0" prefWidth="300.0" styleClass="text_input" />
+      <TextField fx:id="password" layoutX="370.0" layoutY="170.0" prefHeight="25.0" prefWidth="300.0" styleClass="text_input" />
+      <Text fill="#fcfafa" layoutX="430.0" layoutY="285.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <CheckBox fx:id="sanvingsAccount" layoutX="280.0" layoutY="310.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Savings Account">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="visaCard" layoutX="500.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Visa card" />
+      <CheckBox fx:id="currentAccount" layoutX="280.0" layoutY="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Current Account">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="americanCard" layoutX="280.0" layoutY="410.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="American Card" />
+      <CheckBox fx:id="cdt" layoutX="500.0" layoutY="310.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="CDT" />
+      <Button fx:id="saveChanges" layoutX="474.0" layoutY="440.0" mnemonicParsing="false" onAction="#buttonSaveChanges" prefHeight="46.0" prefWidth="212.0" styleClass="buttons" text="Save Changes">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font></Button>
+      <ChoiceBox fx:id="gender" layoutX="369.0" layoutY="220.0" prefHeight="25.0" prefWidth="300.0" stylesheets="@styleWindows.css" />
+   </children>
+</AnchorPane>
