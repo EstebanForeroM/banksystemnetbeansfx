@@ -49,10 +49,10 @@ public class AllProductsViewController {
         ColumAvailable.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
 
         // Cargar datos
-        products.addAll(Services.productSearcher.getProductsByType(products));
+        //products.addAll(Services.productSearcher.getProductsByType(products));
         tableProduct.setItems(products);
 
-        List<Product> products = Services.productSearcher.getProductsById();
+        //List<Product> products = Services.productSearcher.getProductsById();
 
         List<String> productIDs = products.stream()
                 .map(Product::getId)

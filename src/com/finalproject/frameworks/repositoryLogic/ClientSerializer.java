@@ -9,7 +9,6 @@ public class ClientSerializer implements Serializer<Client> {
         return client.getName() + "," + client.getId() + "," + client.getGender().getGenderName() + ","
                 + client.getPassword() + "," + client.getPhotoPath();
     }
-
     public Client deserialize(String clientString) {
         String[] clientData = clientString.split(",");
         Client client = new Client(clientData[1], clientData[0], Gender.getGenderFromGenderName(clientData[2]),
