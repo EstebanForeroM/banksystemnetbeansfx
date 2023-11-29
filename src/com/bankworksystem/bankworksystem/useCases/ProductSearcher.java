@@ -39,6 +39,15 @@ public class ProductSearcher {
         return productsById;
     }
 
+    public Product getUniqueProductById(String id) {
+
+        for (Product product : products) {
+            if (product.getId().equals(id))
+                return product;
+        }
+        return null;
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -74,5 +83,9 @@ public class ProductSearcher {
         }
 
         return productsByType;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 }
